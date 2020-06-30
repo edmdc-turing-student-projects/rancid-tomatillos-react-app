@@ -3,19 +3,19 @@ import './App.css';
 import Movies from './Components/Movies/Movies'
 
 class App extends Component {
-  constructor () {
+  constructor() {
     super();
     this.state = {
-      movies: []
+      movies: [],
+      error: '',
     }
     this.url = 'https://rancid-tomatillos.herokuapp.com/api/v2'
   }
 
-  getAllMovies = () => {
+  componentDidMount() {
     const requestUrl = `${this.url}/movies`
     return fetch(requestUrl)
       .then(response => {
-        console.log(response)
         if (response.ok) {
           return response.json()
         } else {
@@ -23,8 +23,8 @@ class App extends Component {
         }
       })
       .then(movies => {
-        console.log(movies)
-        this.setState({movies: movies, error: ''})
+        console.log(movies, "in promise")
+        this.setState({movies: movies.movies, error: ''})
       })
       .catch(error => {
         console.log(error)
@@ -35,7 +35,7 @@ class App extends Component {
     return (
       <section>
         <h2> Rancid Tomatillos </h2>
-        <Movies movies={this.state.movies} getAllMovies/>
+        {this.state.movies && <Movies movies={this.state.movies}/>}
       </section>
     )
   }
