@@ -4,13 +4,19 @@ import Movie from '../Movie/Movie.js';
 const Movies = ({ movies }) => {
   // console.log(getAllMovies(), 'movies')
 //   getAllMovies()
-if (!movies) {
-    return <h2>No Movies Yet</h2>
-}
+
   console.log(movies, 'movies');
-  const movieResults = movies.map(movie => {
+  const movieResults = movies.map((movie, index) => {
     return (
-      <Movie title={movie.title}/>
+      <Movie 
+        title={movie.title}
+        posterPath={movie.poster_path}
+        backdropPath={movie.backdrop_path}
+        averageRating={movie.average_rating}
+        releaseDate={movie.release_date}
+        id={movie.id}
+        key={index}
+        />
     )
   })
 
