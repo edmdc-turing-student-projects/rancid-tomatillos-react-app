@@ -2,10 +2,6 @@ import React from 'react'
 import Movie from '../Movie/Movie.js';
 
 const Movies = ({ movies }) => {
-  // console.log(getAllMovies(), 'movies')
-//   getAllMovies()
-
-  console.log(movies, 'movies');
   const movieResults = movies.map((movie, index) => {
     return (
       <Movie 
