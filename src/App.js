@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import Movies from "./Components/Movies/Movies";
-import LogIn from "./Components/LogIn/LogIn"
+import LogIn from "./Components/LogIn/LogIn";
+import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -57,8 +58,19 @@ class App extends Component {
     return (
       <section>
         <h2> Rancid Tomatillos </h2>
-        <LogIn postUser={this.postUser}/>
-        {this.state.movies && <Movies movies={this.state.movies} />}
+        <nav>
+          <button>
+            <a href="/login" className="nav">Login</a>
+          </button>
+        </nav>
+        <Switch>
+          <Route exact path="/">
+            {this.state.movies && <Movies movies={this.state.movies} />}
+          </Route>
+          <Route path="/login">
+            <LogIn postUser={this.postUser} />
+          </Route>
+        </Switch>
       </section>
     );
   }
