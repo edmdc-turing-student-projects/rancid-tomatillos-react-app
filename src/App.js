@@ -49,7 +49,7 @@ class App extends Component {
       })
       .then(user => {
         this.setState({user: {...user}})
-        alert('Successful Login!')
+        // alert('Successful Login!')
       })
       .catch(error => this.setState({error: error}))
   }
@@ -60,7 +60,7 @@ class App extends Component {
         <h2> Rancid Tomatillos </h2>
         <nav>
           <button>
-            <a href="/login" className="nav">Login</a>
+            <a href="/login" className="nav">Log In</a>
           </button>
         </nav>
         <Switch>
