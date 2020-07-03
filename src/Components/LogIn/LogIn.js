@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom'
+import { Link, BrowserRouter } from 'react-router-dom'
 import './LogIn.css';
 
 
@@ -19,7 +19,7 @@ class LogIn extends Component {
   }
 
   loginUser(event) {
-    event.preventDefault();
+    // event.preventDefault();
     this.props.postUser(this.state)
   }
 
@@ -42,9 +42,9 @@ class LogIn extends Component {
         value={this.state.password}
         onChange={event => this.updateLoginFields(event)}
       />
-      <NavLink exact to="/"> 
-        <button onClick={event => this.loginUser(event)}> Log In!</button>
-      </NavLink>
+        <Link to="/"> 
+          <button onClick={event => this.loginUser(event)}>Log In!</button>
+        </Link>
     </form>
     )
   }  
