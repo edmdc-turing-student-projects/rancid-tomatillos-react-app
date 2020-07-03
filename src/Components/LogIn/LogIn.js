@@ -17,7 +17,7 @@ class LogIn extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  loginUser(event) {
+  loginUser() {
     // event.preventDefault();
     this.props.postUser(this.state);
   }
