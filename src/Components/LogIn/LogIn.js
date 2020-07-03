@@ -42,14 +42,15 @@ class LogIn extends Component {
         value={this.state.password}
         onChange={event => this.updateLoginFields(event)}
       />
-        <Link to="/"> 
-          <button onClick={event => this.loginUser(event)}>Log In!</button>
-        </Link>
+        {/* <BrowserRouter> */}
+          <Link to="/"> 
+            <button onClick={event => this.loginUser(event)}>Log In!</button>
+          </Link>
+        {/* </BrowserRouter> */}
     </form>
     )
   }  
 }
-
 export default LogIn;
 
 LogIn.propTypes = {
