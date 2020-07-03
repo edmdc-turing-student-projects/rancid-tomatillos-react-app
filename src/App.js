@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Movies from "./Components/Movies/Movies";
 import LogIn from "./Components/LogIn/LogIn";
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -48,10 +48,19 @@ class App extends Component {
         }
       })
       .then(user => {
-        this.setState({user: {...user}})
-        alert('Successful Login!')
+        this.setState({user: user.user})
+        // alert('Successful Login!')
       })
       .catch(error => this.setState({error: error}))
+  }
+
+  logOut(event) {
+    event.preventDefault();
+    if(event.target.innerHTML === 'Log Out') {
+      this.setState({
+        user: {}
+      });
+    };
   }
 
   render() {
@@ -59,18 +68,19 @@ class App extends Component {
       <section>
         <h2> Rancid Tomatillos </h2>
         <nav>
-          <button>
-            <a href="/login" className="nav">Login</a>
+          <button onClick={event => this.logOut(event)}>          
+            {!this.state.user.email && <Link to="/login" className="nav">Log In</Link> }
+            {this.state.user.email && "Log Out"}
           </button>
         </nav>
-        <Switch>
-          <Route exact path="/">
-            {this.state.movies && <Movies movies={this.state.movies} />}
-          </Route>
-          <Route path="/login">
-            <LogIn postUser={this.postUser} />
-          </Route>
-        </Switch>
+          <Switch>
+            <Route exact path="/">
+              {this.state.movies && <Movies movies={this.state.movies} />}
+            </Route>
+            <Route exact path="/login">
+              <LogIn postUser={this.postUser} />
+            </Route>
+          </Switch>
       </section>
     );
   }
