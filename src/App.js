@@ -54,14 +54,23 @@ class App extends Component {
       .catch(error => this.setState({error: error}))
   }
 
+  logOut(event) {
+    event.preventDefault();
+    if(event.target.innerHTML === 'Log Out') {
+      this.setState({
+        user: {}
+      });
+    };
+  }
+
   render() {
     return (
       <section>
         <h2> Rancid Tomatillos </h2>
         <nav>
-          <button>          
-            {!this.state.user.email &&  <Link to="/login" className="nav">Log In</Link>}
-            {this.state.user.email &&  <Link to="/login" className="nav">Log Out</Link>}
+          <button onClick={event => this.logOut(event)}>          
+            {!this.state.user.email && <Link to="/login" className="nav">Log In</Link> }
+            {this.state.user.email && "Log Out"}
           </button>
         </nav>
           <Switch>
