@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Movies from "./Components/Movies/Movies";
 import LogIn from "./Components/LogIn/LogIn";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 
 class App extends Component {
   constructor() {
@@ -21,6 +21,7 @@ class App extends Component {
       try {
         const response = await fetch(requestUrl);
         let movies;
+        console.log(response);
 
         if (response.ok) {
           movies = await response.json();
@@ -35,28 +36,23 @@ class App extends Component {
     return getMoviesRequest();
   }
 
-  postUser = (userCredentials) => {
+  postUser = async (userCredentials) => {
     const requestUrl = `${this.url}/login`;
-    const userLoginCredentials = {
+    const loginRequest = {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(userCredentials),
     };
-    const loginUser = async () => {
-      try {
-        const response = await fetch(requestUrl, userLoginCredentials);
-        let userInfo;
-        if (response.ok) {
-          userInfo = await response.json();
-          this.setState({ user: userInfo.user });
-        } else {
-          throw new Error({ ...response });
-        }
-      } catch (error) {
-        this.setState({ error: error });
-      }
-    };
-    return loginUser();
+
+    let response = await fetch(requestUrl, loginRequest);
+    let userInfo;
+
+    if (response.ok) {
+      userInfo = await response.json();
+      this.setState({ user: userInfo.user });
+    } else {
+      throw new Error({ ...response });
+    }
   };
 
   logOut(event) {
@@ -94,5 +90,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;
