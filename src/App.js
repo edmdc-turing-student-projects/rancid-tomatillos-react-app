@@ -43,15 +43,19 @@ class App extends Component {
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(userCredentials),
     };
-
-    let response = await fetch(requestUrl, loginRequest);
-    let userInfo;
-
-    if (response.ok) {
-      userInfo = await response.json();
-      this.setState({ user: userInfo.user });
-    } else {
-      throw new Error({ ...response });
+    try {
+      const response = await fetch(requestUrl, loginRequest);
+      let userInfo;
+  
+      if (response.ok) {
+        userInfo = await response.json();
+        this.setState({ user: userInfo.user });
+      } else {
+        console.log(response)
+        throw new Error({ ...response });
+      }
+    } catch(error) {
+      this.setState({error: error});
     }
   };
 
