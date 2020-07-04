@@ -43,7 +43,7 @@ class LogIn extends Component {
         />
         {/* <BrowserRouter> */}
         <Link to="/">
-          <button onClick={(event) => this.loginUser(event)}>Log In!</button>
+          <button onClick={(event) => this.loginUser(event)} className="log-in-button">Log In!</button>
         </Link>
         {/* </BrowserRouter> */}
       </form>
