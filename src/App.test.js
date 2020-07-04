@@ -3,7 +3,6 @@ import { render, fireEvent } from "@testing-library/react";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
-<<<<<<< Updated upstream
 //INTEGRATION
 //test for presence of login button
 //should say logout if this.state.user = {alkdfj}
@@ -12,12 +11,6 @@ import { BrowserRouter } from "react-router-dom";
 //Async
 //test for 200 response
 
-=======
-
-//test for presence of login button
-//should say logout if this.state.user = {alkdfj}
-//movie
->>>>>>> Stashed changes
 
 describe("App", () => {
   it("renders page title", () => {
