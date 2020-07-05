@@ -1,13 +1,11 @@
 article {
-  width: 25vw;
-  height: 65vh;
-  margin-left: 3%;
-  margin-top: 3%;
-  float: left;
+  width: 27em;
+  height: 35em;
+  margin: 5%;
   position: relative;
 }
 
-article::before {
+div::before {
   content: '';
   background: #58a;
   z-index: -1;
@@ -16,7 +14,7 @@ article::before {
   position: absolute;
 }
 
-article > img {
+div > img {
   top: 0; right: 0; bottom: 0; left: 0;
   padding-left: 10%;
   width: 80%;

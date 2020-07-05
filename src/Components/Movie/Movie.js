@@ -8,21 +8,29 @@ const Movie = ({ posterPath, title, averageRating, releaseDate }) => {
       month: "long",
       day: "numeric",
     };
+
     const formattedDate = new Date(releaseDate).toLocaleString(
       "en-US",
       options
     );
+
     return `Released on ${formattedDate}`;
   };
+
   return (
     <article>
-      <h4>{title}</h4>
-      <p>{formatDate(releaseDate)}</p>
-      <img alt={`${title} movie poster`} src={posterPath} />
-      <li>{averageRating}</li>
+      <figure>
+        <div>
+          <img alt={`${title} movie poster`} src={posterPath} />
+        </div>
+        <figcaption>
+          <h4>{title}</h4>
+          <p>{formatDate(releaseDate)}</p>
+          <p>{averageRating}</p>
+        </figcaption>
+      </figure>
     </article>
   );
 };
 
 export default Movie;
-
