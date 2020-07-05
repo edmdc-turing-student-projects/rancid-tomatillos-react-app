@@ -1,8 +1,8 @@
 import React from 'react'
 import Movie from '../Movie/Movie.js';
 
-const Movies = ({ movies }) => {
-  const movieResults = movies.map((movie, index) => {
+const Movies = ( props ) => {
+  const movieResults = props.movies.map((movie, index) => {
     return (
       <Movie 
         title={movie.title}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Movies from "./Components/Movies/Movies";
 import LogIn from "./Components/LogIn/LogIn";
+import MovieMainPage from "./Components/MovieMainPage/MovieMainPage";
 import { Route, Switch, Link } from "react-router-dom";
 
 class App extends Component {
@@ -74,24 +75,43 @@ class App extends Component {
         <h2> Rancid Tomatillos </h2>
         <nav>
           <button onClick={(event) => this.logOut(event)}>
-            {!this.state.user.email && (
+            {!this.state.user.email &&(
               <Link to="/login" className="nav">
                 Log In
               </Link>
             )}
             {this.state.user.email && "Log Out"}
           </button>
+          <button>
+            <Link to="/movies/:id">
+              MovieMainPage
+            </Link>
+          </button>
         </nav>
         <Switch>
-          <Route exact path="/">
-            {this.state.movies && <Movies movies={this.state.movies} />}
+            <Route exact path="/">
+              {this.state.movies && <Movies movies={this.state.movies} />}
           </Route>
           <Route exact path="/login">
             <LogIn postUser={this.postUser} />
           </Route>
+          <Route
+            path="/movies/:id" 
+            exact
+            render={({ match }) => {
+              const { id } = match.params;
+              const movieToRender = this.state.movies.find(movie => movie.id === parseInt(id))
+              console.log(movieToRender);
+              
+              return null //<Movies {...movieToRender}/>
+            }}
+          />
+            {/* <MovieMainPage selectMovie={ this.selectMovie}/> */}
+          {/* </Route> */}
         </Switch>
       </section>
     );
   }
 }
 export default App;
+

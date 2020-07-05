@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Movie.css";
+
 
 const Movie = ({ id, posterPath, title, averageRating, releaseDate }) => {
   const formatDate = (releaseDate) => {
@@ -16,10 +18,12 @@ const Movie = ({ id, posterPath, title, averageRating, releaseDate }) => {
   };
   return (
     <article id={id}>
-      <h4>{title}</h4>
-      <p>{formatDate(releaseDate)}</p>
-      <img alt={`${title} movie poster`} src={posterPath} />
-      <li>{averageRating}</li>
+      <Link to={`/movies/${id}`}>
+        <h4>{title}</h4>
+        <p>{formatDate(releaseDate)}</p>
+        <img alt={`${title} movie poster`} src={posterPath} />
+        <li>{averageRating}</li>
+      </Link>
     </article>
   );
 };
