@@ -3,6 +3,7 @@ import "./App.css";
 import Movies from "./Components/Movies/Movies";
 import LogIn from "./Components/LogIn/LogIn";
 import { Route, Switch, Link } from "react-router-dom";
+import MovieMainPage from "./Components/MovieMainPage/MovieMainPage";
 
 class App extends Component {
   constructor() {
@@ -21,7 +22,6 @@ class App extends Component {
       try {
         const response = await fetch(requestUrl);
         let movies;
-        console.log(response);
 
         if (response.ok) {
           movies = await response.json();
@@ -59,28 +59,27 @@ class App extends Component {
     }
   };
 
-  logOut(event) {
+  logOut = (event) => {
     event.preventDefault();
     if (event.target.innerHTML === "Log Out") {
       this.setState({
         user: {},
       });
     }
-  }
+  };
 
   render() {
     return (
       <section>
         <h2> Rancid Tomatillos </h2>
         <nav>
-          <button onClick={(event) => this.logOut(event)}>
-            {!this.state.user.email && (
-              <Link to="/login" className="nav">
-                Log In
-              </Link>
-            )}
-            {this.state.user.email && "Log Out"}
-          </button>
+          {this.state.user.email ? (
+            <button onClick={(event) => this.logOut(event)}>Log Out</button>
+          ) : (
+            <Link to="/login">
+              <button>Log In!</button>
+            </Link>
+          )}
         </nav>
         <Switch>
           <Route exact path="/">
@@ -89,9 +88,21 @@ class App extends Component {
           <Route exact path="/login">
             <LogIn postUser={this.postUser} />
           </Route>
+          <Route
+            exact
+            path="/movies/:id"
+            render={({ match }) => {
+              const { id } = match.params;
+              const movie2Render = this.state.movies.find(
+                (movie) => movie.id === parseInt(id)
+              );
+              return <MovieMainPage {...movie2Render} rootUrl={this.url} />;
+            }}
+          ></Route>
         </Switch>
       </section>
     );
   }
 }
+
 export default App;

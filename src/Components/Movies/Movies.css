@@ -1,0 +1,17 @@
+section {
+  list-style-type: none;
+}
+
+ul {
+  display: flex;
+  flex-flow: row nowrap;
+  overflow-x: scroll;
+}
+
+li {
+  display: inline-block;
+  border: 4px solid cornsilk;
+  margin-right: 15px;
+  margin-bottom: 3%;
+  color: blue;
+}
