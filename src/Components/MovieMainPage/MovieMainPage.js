@@ -5,27 +5,42 @@ import "./MovieMainPage.css";
 class MovieMainPage extends Component {
   componentDidMount() {
     const requestUrl = `${this.props.rootUrl}/movies/${this.props.id}`;
-    console.log(requestUrl, "url");
     const getMovieDetails = async () => {
       try {
         const response = await fetch(requestUrl);
-        console.log(response);
         if (response.ok) {
           const movieDetails = await response.json();
-          console.log(movieDetails, "hello world");
           this.setState({ ...movieDetails });
         } else {
           throw new Error({ ...response });
         }
       } catch (error) {
-        this.setState({ error: error });
+        this.setState({ ...error });
       }
     };
     return getMovieDetails();
   }
 
   render() {
-    return <h5>Hello World</h5>;
+    return (
+      <section>
+        {this.state && (
+          <>
+            <h1>{this.state.movie.title}</h1>
+            <figure>
+              <img
+                className="poop"
+                src={this.state.movie.backdrop_path}
+                alt={`Backdrop for ${this.state.movie.title}`}
+              />
+              <figcaption>
+                <h4>{this.state.movie.overview}</h4>
+              </figcaption>
+            </figure>
+          </>
+        )}
+      </section>
+    );
   }
 }
 
