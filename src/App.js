@@ -4,6 +4,8 @@ import Movies from "./Components/Movies/Movies";
 import LogIn from "./Components/LogIn/LogIn";
 import { Route, Switch, Link } from "react-router-dom";
 import MovieMainPage from "./Components/MovieMainPage/MovieMainPage";
+import { apiCall } from "./apiCalls";
+const { getAllMovies, loginUser } = apiCall();
 
 class App extends Component {
   constructor() {
@@ -17,18 +19,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const requestUrl = `${this.url}/movies`;
     const getMoviesRequest = async () => {
       try {
-        const response = await fetch(requestUrl);
-        let movies;
-
-        if (response.ok) {
-          movies = await response.json();
-          this.setState({ movies: movies.movies, error: "" });
-        } else {
-          throw new Error({ ...response });
-        }
+        let movies = await getAllMovies();
+        this.setState({ movies: movies.movies, error: "" });
       } catch (error) {
         this.setState({ error: error });
       }
@@ -37,21 +31,11 @@ class App extends Component {
   }
 
   postUser = async (userCredentials) => {
-    const requestUrl = `${this.url}/login`;
-    const loginRequest = {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(userCredentials),
-    };
-
-    let response = await fetch(requestUrl, loginRequest);
-    let userInfo;
-
-    if (response.ok) {
-      userInfo = await response.json();
-      this.setState({ user: userInfo.user });
-    } else {
-      throw new Error({ ...response });
+    try {
+      const { user } = await loginUser(userCredentials);
+      this.setState({ user: user });
+    } catch (error) {
+      this.setState({ error: error });
     }
   };
 
