@@ -1,31 +1,30 @@
-export const apiCall = () => {
-  const rootUrl = "https://rancid-tomatillos.herokuapp.com/api/v2";
+export const getAllMovies = async () => {
+  const movieUrl = "https://rancid-tomatillos.herokuapp.com/api/v2/movies"
 
-  return {
-    getAllMovies: async () => {
-      const response = await fetch(`${rootUrl}/movies`);
+  const response = await fetch(movieUrl);
 
-      if (response.ok) {
-        return await response.json();
-      } else {
-        throw new Error({ ...response });
-      }
-    },
+  if (response.ok) {
+    return await response.json();
+  } else {
+    throw new Error({ ...response });
+  }
+}
 
-    loginUser: async (userCredentials) => {
-      const loginRequest = {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(userCredentials),
-      };
+export const loginUser = async (userCredentials) => {
+  const loginRequestUrl = "https://rancid-tomatillos.herokuapp.com/api/v2/login"
 
-      const response = await fetch(`${rootUrl}/login`, loginRequest);
-
-      if (response.ok) {
-        return await response.json();
-      } else {
-        throw new Error({ ...response });
-      }
-    },
+  const loginRequest = {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(userCredentials),
   };
-};
+
+  const response = await fetch(loginRequestUrl, loginRequest);
+
+  if (response.ok) {
+    return await response.json();
+  } else {
+    throw new Error({ ...response });
+  }
+}
+

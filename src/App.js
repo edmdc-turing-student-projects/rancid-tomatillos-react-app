@@ -4,8 +4,7 @@ import Movies from "./Components/Movies/Movies";
 import LogIn from "./Components/LogIn/LogIn";
 import { Route, Switch, Link } from "react-router-dom";
 import MovieMainPage from "./Components/MovieMainPage/MovieMainPage";
-import { apiCall } from "./apiCalls";
-const { getAllMovies, loginUser } = apiCall();
+import { getAllMovies, loginUser } from "./apiCalls";
 
 class App extends Component {
   constructor() {
