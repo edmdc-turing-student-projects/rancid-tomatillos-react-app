@@ -51,22 +51,27 @@ class App extends Component {
     return (
       <section>
         <h2> Rancid Tomatillos </h2>
+
         <nav>
           {this.state.user.email ? (
-            <button onClick={(event) => this.logOut(event)}>Log Out</button>
-          ) : (
+            <button onClick={(event) => this.logOut(event)}>
+                Log Out
+            </button>
+            ) : (
             <Link to="/login">
               <button>Log In!</button>
             </Link>
           )}
         </nav>
-        <Switch>
+
           <Route exact path="/">
             {this.state.movies && <Movies movies={this.state.movies} />}
           </Route>
+
           <Route exact path="/login">
             <LogIn postUser={this.postUser} />
           </Route>
+
           <Route
             exact
             path="/movies/:id"
@@ -78,7 +83,7 @@ class App extends Component {
               return <MovieMainPage {...movie2Render} rootUrl={this.url} />;
             }}
           ></Route>
-        </Switch>
+
       </section>
     );
   }

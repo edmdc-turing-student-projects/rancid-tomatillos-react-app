@@ -1,17 +1,21 @@
 section {
   list-style-type: none;
+  width: 95%;
 }
 
 ul {
-  display: flex;
-  flex-flow: row nowrap;
-  overflow-x: scroll;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 95%;
 }
 
 li {
   display: inline-block;
-  border: 4px solid cornsilk;
+  background-color: blanchedalmond;
+  border: 4px solid blanchedalmond;
+  padding: 0px;
   margin-right: 15px;
   margin-bottom: 3%;
   color: blue;
+  box-shadow: 3px 3px 3px 3px #ccc;
 }
