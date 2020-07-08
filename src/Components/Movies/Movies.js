@@ -5,9 +5,29 @@ import { Link } from "react-router-dom";
 
 const Movies = ({ movies, ratings }) => {
   const findMovieRating = (movie) => {
-    if (!ratings.length) return <button> Add Rating </button>
+    if (!ratings.length) return movieRatingForm()
     const movieRating = ratings.find( rating => movie.id === rating.movie_id)
-    return (movieRating) ? <h5> Rating </h5> : <button> Add Rating </button>
+    return (movieRating) ? <h5> Rating </h5> : movieRatingForm()
+  }
+
+  const movieRatingForm = () => {
+    const formInputs = () => {
+      const scores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      return scores.map((score) => {
+        return (
+              <>
+               <label htmlFor={`ratingChoice${score}`}>{score}</label>
+               <input 
+                   key="score"
+                   type="radio" 
+                   id={`ratingChoice${score}`}
+                   name="rating" 
+                   value={score}/>
+              </>
+        )
+      })
+    }
+    return <form>{formInputs()}</form>;
   }
 
   const movieResults = movies.map((movie, index) => {
