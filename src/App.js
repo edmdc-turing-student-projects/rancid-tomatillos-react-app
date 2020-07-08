@@ -4,7 +4,7 @@ import Movies from "./Components/Movies/Movies";
 import LogIn from "./Components/LogIn/LogIn";
 import { Route, Link, Redirect } from "react-router-dom";
 import MovieMainPage from "./Components/MovieMainPage/MovieMainPage";
-import { getAllMovies, loginUser } from "./apiCalls";
+import { getAllMovies, loginUser, movieRatingsRequests } from "./apiCalls";
 
 class App extends Component {
   constructor() {
@@ -27,6 +27,20 @@ class App extends Component {
       }
     };
     return getMoviesRequest();
+  }
+
+  componentDidUpdate() {
+   if (this.state.user.id) {
+      const getUserMovieRatings = async () => {
+        try {
+          const ratings = await movieRatingsRequests(this.state.user.id)
+          this.setState({...ratings})
+        } catch (error) {
+          this.setState({ error: error });
+        }
+      }
+      return getUserMovieRatings();
+    }
   }
 
   postUser = async (userCredentials) => {
@@ -80,7 +94,10 @@ class App extends Component {
             <LogIn postUser={this.postUser} />
           </Route>
 
-          <Route exact path='/user/:id'>
+        <Route
+          exact
+          path='/user/:id'>
+          <Movies movies={this.state.movies} ratings={this.state.ratings} />
           {!this.state.user.name && <Redirect to="/" />}
           </Route>
 

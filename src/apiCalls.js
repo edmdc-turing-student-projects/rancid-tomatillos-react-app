@@ -39,3 +39,15 @@ export const getSingleMovieInfo = async (id) => {
     throw new Error({...response});
   }
 };
+
+export const movieRatingsRequests = async (userId) => {
+  const movieRatingUrl = `https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`
+
+  const response = await fetch(movieRatingUrl)
+
+  if (response.ok) {
+    return await response.json()
+  } else {
+    throw new Error({...response})
+  }
+};
