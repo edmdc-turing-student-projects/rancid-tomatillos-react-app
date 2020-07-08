@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Movies from "./Components/Movies/Movies";
 import LogIn from "./Components/LogIn/LogIn";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Link, Redirect } from "react-router-dom";
 import MovieMainPage from "./Components/MovieMainPage/MovieMainPage";
 import { getAllMovies, loginUser } from "./apiCalls";
 
@@ -54,23 +54,15 @@ class App extends Component {
 
         <nav>
           {this.state.user.email ? (
-            <button onClick={(event) => this.logOut(event)}>
-                Log Out
-            </button>
+              <button onClick={(event) => this.logOut(event)}>
+              Log Out
+              </button>
             ) : (
             <Link to="/login">
               <button>Log In!</button>
             </Link>
           )}
         </nav>
-
-          <Route exact path="/">
-            {this.state.movies && <Movies movies={this.state.movies} />}
-          </Route>
-
-          <Route exact path="/login">
-            <LogIn postUser={this.postUser} />
-          </Route>
 
           <Route
             exact
@@ -83,6 +75,19 @@ class App extends Component {
               return <MovieMainPage {...movie2Render} rootUrl={this.url} />;
             }}
           ></Route>
+
+          <Route exact path="/login">
+            <LogIn postUser={this.postUser} />
+          </Route>
+
+          <Route exact path='/user/:id'>
+          {!this.state.user.name && <Redirect to="/" />}
+          </Route>
+
+          <Route exact path="/">
+            {this.state.user.name && <Redirect to={`/user/${this.state.user.id}`} />}
+            {this.state.movies && <Movies movies={this.state.movies} />}
+          </Route>
 
       </section>
     );
