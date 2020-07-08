@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link, BrowserRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./LogIn.css";
 
 class LogIn extends Component {
@@ -41,11 +41,9 @@ class LogIn extends Component {
           value={this.state.password}
           onChange={(event) => this.updateLoginFields(event)}
         />
-        {/* <BrowserRouter> */}
-        <Link to="/">
+        <Link to="/user/:id">
           <button onClick={(event) => this.loginUser(event)}>Log In!</button>
         </Link>
-        {/* </BrowserRouter> */}
       </form>
     );
   }

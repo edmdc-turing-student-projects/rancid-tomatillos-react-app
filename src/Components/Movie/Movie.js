@@ -1,7 +1,9 @@
 import React from "react";
 import "./Movie.css";
+import UserReviews from "../UserReviews/UserReviews"
 
-const Movie = ({ posterPath, title, averageRating, releaseDate }) => {
+
+const Movie = ({ posterPath, title, averageRating, releaseDate, userId }) => {
   const formatDate = (releaseDate) => {
     const options = {
       year: "numeric",
@@ -27,6 +29,7 @@ const Movie = ({ posterPath, title, averageRating, releaseDate }) => {
           <h4>{title}</h4>
           <p>{formatDate(releaseDate)}</p>
           <p>{averageRating}</p>
+          <UserReviews userId={userId} />
         </figcaption>
       </figure>
     </article>

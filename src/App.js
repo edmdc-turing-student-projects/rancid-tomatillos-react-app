@@ -83,8 +83,13 @@ class App extends Component {
         </nav>
         <Switch>
           <Route exact path="/">
-            {this.state.movies && <Movies movies={this.state.movies} />}
+            {this.state.movies && <Movies movies={this.state.movies} userId={this.state.user.id} />}
           </Route>
+          <Route 
+            exact 
+            path="/user/:id"
+          >
+          </Route> 
           <Route exact path="/login">
             <LogIn postUser={this.postUser} />
           </Route>
