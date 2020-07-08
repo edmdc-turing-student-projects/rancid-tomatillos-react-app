@@ -21,7 +21,7 @@ const Movies = ({ movies }) => {
   });
 
   return (
-    <section>
+    <section data-testid="movies-section">
       <ul>{movieResults.length && movieResults}</ul>
     </section>
   );

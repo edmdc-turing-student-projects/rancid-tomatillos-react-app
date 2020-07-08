@@ -28,3 +28,14 @@ export const loginUser = async (userCredentials) => {
   }
 }
 
+export const getSingleMovieInfo = async (id) => {
+  const singleMovieUrl = `https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`
+
+  const response = await fetch(singleMovieUrl);
+
+  if (response.ok) {
+    return await response.json()
+  } else {
+    throw new Error({...response});
+  }
+};
