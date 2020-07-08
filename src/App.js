@@ -30,6 +30,7 @@ class App extends Component {
   }
 
   postUser = async (userCredentials) => {
+
     try {
       const { user } = await loginUser(userCredentials);
       this.setState({ user: user });
