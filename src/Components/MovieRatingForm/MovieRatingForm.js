@@ -24,7 +24,7 @@ class MovieRatingForm extends Component {
             id={`ratingChoice${score}`}
             name="rating" 
             value={score}
-            checked={false}
+            defaultChecked={false}
           />
         </>
       )
