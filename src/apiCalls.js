@@ -51,3 +51,23 @@ export const movieRatingsRequests = async (userId) => {
     throw new Error({...response})
   }
 };
+
+export const addRating = async (userId, movieInfo) => {
+  const movieRatingUrl =  `https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`;
+
+  const submitUserMovieRating = {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(movieInfo),
+    // { movie_id: <Integer>, 
+    //   rating: <Integer between 1 and 10> }
+  }
+
+  const response = await fetch(movieRatingUrl, submitUserMovieRating);
+
+  if (response.ok) {
+    return await response.json();
+  } else {
+    throw new Error({ ...response });
+  }
+}

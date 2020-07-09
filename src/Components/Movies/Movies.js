@@ -2,32 +2,13 @@ import React from "react";
 import Movie from "../Movie/Movie.js";
 import "./Movies.css";
 import { Link } from "react-router-dom";
+import MovieRatingForm from "../MovieRatingForm/MovieRatingForm"
 
 const Movies = ({ movies, ratings }) => {
   const findMovieRating = (movie) => {
-    if (!ratings.length) return movieRatingForm()
+    if (!ratings.length) return <MovieRatingForm movieId={movie.id}/>
     const movieRating = ratings.find( rating => movie.id === rating.movie_id)
-    return (movieRating) ? <h5> Rating </h5> : movieRatingForm()
-  }
-
-  const movieRatingForm = () => {
-    const formInputs = () => {
-      const scores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-      return scores.map((score) => {
-        return (
-              <>
-               <label htmlFor={`ratingChoice${score}`}>{score}</label>
-               <input 
-                   key="score"
-                   type="radio" 
-                   id={`ratingChoice${score}`}
-                   name="rating" 
-                   value={score}/>
-              </>
-        )
-      })
-    }
-    return <form>{formInputs()}</form>;
+    return (movieRating) ? <h5> Rating </h5> : <MovieRatingForm movieId={movie.id}/>
   }
 
   const movieResults = movies.map((movie, index) => {
