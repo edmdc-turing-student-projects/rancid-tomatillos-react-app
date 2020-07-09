@@ -59,8 +59,6 @@ export const addRating = async (userId, movieInfo) => {
     method: "POST",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(movieInfo),
-    // { movie_id: <Integer>, 
-    //   rating: <Integer between 1 and 10> }
   }
 
   const response = await fetch(movieRatingUrl, submitUserMovieRating);

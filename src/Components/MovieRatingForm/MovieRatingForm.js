@@ -19,13 +19,13 @@ class MovieRatingForm extends Component {
         <>
           <label htmlFor={`ratingChoice${score}`}>{score}</label>
           <input 
-              key="score"
-              type="radio" 
-              id={`ratingChoice${score}`}
-              name="rating" 
-              value={score}
-              checked={false}
-              />
+            key="score"
+            type="radio" 
+            id={`ratingChoice${score}`}
+            name="rating" 
+            value={score}
+            checked={false}
+          />
         </>
       )
     })

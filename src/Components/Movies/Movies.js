@@ -8,7 +8,8 @@ const Movies = ({ movies, ratings, userId }) => {
   const findMovieRating = (movie) => {
     if (!ratings.length) return <MovieRatingForm userId={userId} movieId={movie.id}/>
     const movieRating = ratings.find( rating => movie.id === rating.movie_id)
-    return (movieRating) ? <h5> Rating </h5> : <MovieRatingForm movieId={movie.id}/>
+    console.log(movieRating, 'rating')
+    return (movieRating) ? <h5> {movieRating.rating} </h5> : <MovieRatingForm movieId={movie.id}/>
   }
 
   const movieResults = movies.map((movie, index) => {
