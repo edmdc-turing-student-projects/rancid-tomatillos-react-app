@@ -53,7 +53,7 @@ export const movieRatingsRequests = async (userId) => {
 };
 
 export const addRating = async (userId, movieInfo) => {
-  const movieRatingUrl =  `https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`;
+  const movieRatingsUrl =  `https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`;
 
   const submitUserMovieRating = {
     method: "POST",
@@ -61,7 +61,7 @@ export const addRating = async (userId, movieInfo) => {
     body: JSON.stringify(movieInfo),
   }
 
-  const response = await fetch(movieRatingUrl, submitUserMovieRating);
+  const response = await fetch(movieRatingsUrl, submitUserMovieRating);
 
   if (response.ok) {
     return await response.json();
@@ -69,3 +69,16 @@ export const addRating = async (userId, movieInfo) => {
     throw new Error({ ...response });
   }
 }
+
+export const deleteRating = async (userId, ratingId) => {
+  const singleRatingUrl = `https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings/${ratingId}`
+
+  const requestOptions = {
+    method: "DELETE",
+    headers: { "Content-type": "application/json" }
+  }
+
+  const response = await fetch(singleRatingUrl, requestOptions)
+
+  return await response.json()
+};
