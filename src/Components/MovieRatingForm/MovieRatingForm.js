@@ -3,10 +3,11 @@ import "./MovieRatingForm.css";
 import { addRating } from "../../apiCalls";
 
 class MovieRatingForm extends Component {
-  constructor({ movieId, userId }) {
+  constructor({ movieId, userId, userRating = null }) {
     super();
     this.state = {
       movieId: movieId,
+      userRating: userRating,
       rating: null,
       userId: userId,
       error: ""
@@ -18,11 +19,11 @@ class MovieRatingForm extends Component {
       return (
         <>
           <label htmlFor={`ratingChoice${score}`}>{score}</label>
-          <input 
+          <input
             key="score"
-            type="radio" 
+            type="radio"
             id={`ratingChoice${score}`}
-            name="rating" 
+            name="rating"
             value={score}
             defaultChecked={false}
           />
@@ -33,7 +34,7 @@ class MovieRatingForm extends Component {
 
   changeHandler = (event) => {
     console.log(event.target.value);
-    
+
     this.setState({ rating:  event.target.value})
   }
 
@@ -44,21 +45,38 @@ class MovieRatingForm extends Component {
    }
     try {
       const response = await addRating(this.state.userId, movieInfo);
+      this.setState({userRating: this.state.rating})
       console.log(response);
     } catch(error)  {
       this.setState({ error: error });
     }
   }
 
+  userMovieRatingFragment = () => {
+    return (
+      <>
+        <h5>{`Your Rating: ${this.state.userRating}`}</h5>
+        <button> Hello </button>
+      </>
+    )
+  }
+
+  movieRatingFormFragment = () => {
+    return (
+      <>
+        <form onChange={this.changeHandler}>{this.formInputs()}
+          <button onClick={(event) => {
+            event.preventDefault();
+            this.postMovieRating()
+          }}>Submit</button>
+        </form>
+      </>
+    )
+  }
+
   render() {
     return (
-        <>
-          <form onChange={this.changeHandler}>{this.formInputs()}
-            <button onClick={(event) => {
-              event.preventDefault();
-              this.postMovieRating()}}>Submit</button>
-          </form>
-        </>
+      (this.state.userRating) ? this.userMovieRatingFragment() : this.movieRatingFormFragment()
     )
   }
 }
