@@ -3,11 +3,12 @@ import "./MovieRatingForm.css";
 import { addRating } from "../../apiCalls";
 
 class MovieRatingForm extends Component {
-  constructor({ movieId }) {
+  constructor({ movieId, userId }) {
     super();
     this.state = {
       movieId: movieId,
       rating: null,
+      userId: userId,
       error: ""
     }
   }
@@ -31,6 +32,8 @@ class MovieRatingForm extends Component {
   }
 
   changeHandler = (event) => {
+    console.log(event.target.value);
+    
     this.setState({ rating:  event.target.value})
   }
 
@@ -40,7 +43,7 @@ class MovieRatingForm extends Component {
      rating: parseInt(this.state.rating)
    }
     try {
-      const response = await addRating(movieInfo);
+      const response = await addRating(this.state.userId, movieInfo);
       console.log(response);
     } catch(error)  {
       this.setState({ error: error });
@@ -53,7 +56,7 @@ class MovieRatingForm extends Component {
           <form onChange={this.changeHandler}>{this.formInputs()}
             <button onClick={(event) => {
               event.preventDefault();
-              console.log(event.target.parentNode)}}>Submit</button>
+              this.postMovieRating()}}>Submit</button>
           </form>
         </>
     )

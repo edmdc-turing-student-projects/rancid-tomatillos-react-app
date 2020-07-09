@@ -4,9 +4,9 @@ import "./Movies.css";
 import { Link } from "react-router-dom";
 import MovieRatingForm from "../MovieRatingForm/MovieRatingForm"
 
-const Movies = ({ movies, ratings }) => {
+const Movies = ({ movies, ratings, userId }) => {
   const findMovieRating = (movie) => {
-    if (!ratings.length) return <MovieRatingForm movieId={movie.id}/>
+    if (!ratings.length) return <MovieRatingForm userId={userId} movieId={movie.id}/>
     const movieRating = ratings.find( rating => movie.id === rating.movie_id)
     return (movieRating) ? <h5> Rating </h5> : <MovieRatingForm movieId={movie.id}/>
   }

@@ -97,7 +97,7 @@ class App extends Component {
         <Route
           exact
           path='/user/:id'>
-          <Movies movies={this.state.movies} ratings={this.state.ratings} />
+          <Movies movies={this.state.movies} ratings={this.state.ratings} userId={this.state.user.id} />
           {!this.state.user.name && <Redirect to="/" />}
           </Route>
 
