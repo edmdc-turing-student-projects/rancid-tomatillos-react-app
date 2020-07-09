@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./MovieRatingForm.css";
-import { addRating } from "../../apiCalls";
+import { addRating, deleteRating } from "../../apiCalls";
 
 class MovieRatingForm extends Component {
   constructor({ movieId, userId, userRating = null }) {
@@ -45,18 +45,28 @@ class MovieRatingForm extends Component {
    }
     try {
       const response = await addRating(this.state.userId, movieInfo);
-      this.setState({userRating: this.state.rating})
-      console.log(response);
+      console.log(response, "response to submited rating");
+      this.setState({userRating: response.rating})
     } catch(error)  {
       this.setState({ error: error });
+    }
+  }
+
+  deleteMovieRating = async () => {
+    try {
+      const response = await deleteRating(this.state.userId, this.state.userRating.id)
+      this.setState({userRating: null});
+      console.log(response)
+    } catch (error) {
+      this.setState({error: error});
     }
   }
 
   userMovieRatingFragment = () => {
     return (
       <>
-        <h5>{`Your Rating: ${this.state.userRating}`}</h5>
-        <button> Hello </button>
+        <h5>{`Your Rating: ${this.state.userRating.rating}`}</h5>
+        <button onClick={this.deleteMovieRating}> Delete </button>
       </>
     )
   }
