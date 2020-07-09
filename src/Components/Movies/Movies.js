@@ -2,12 +2,14 @@ import React from "react";
 import Movie from "../Movie/Movie.js";
 import "./Movies.css";
 import { Link } from "react-router-dom";
+import MovieRatingForm from "../MovieRatingForm/MovieRatingForm"
 
-const Movies = ({ movies, ratings }) => {
+const Movies = ({ movies, ratings, userId }) => {
   const findMovieRating = (movie) => {
-    if (!ratings.length) return <button> Add Rating </button>
+    if (!ratings.length) return <MovieRatingForm userId={userId} movieId={movie.id}/>
     const movieRating = ratings.find( rating => movie.id === rating.movie_id)
-    return (movieRating) ? <h5> Rating </h5> : <button> Add Rating </button>
+    // console.log(movieRating, 'rating')
+    return (movieRating) ? <h5> {movieRating.rating} </h5> : <MovieRatingForm userId={userId} movieId={movie.id} />
   }
 
   const movieResults = movies.map((movie, index) => {
