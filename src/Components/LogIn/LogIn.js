@@ -10,8 +10,7 @@ class LogIn extends Component {
     this.state = {
       email: "",
       password: "",
-    };    
-    {console.log(this.props)}    
+    };     
   }
 
   updateLoginFields(event) {
@@ -23,21 +22,12 @@ class LogIn extends Component {
     this.props.postUser(this.state);
   }
 
-  loginCheck() {
-    if(!this.props.postUser(this.state)) {
-      console.log(false, 'logincheck')
-    } else {
-      this.props.postUser(this.state);
-      console.log(true, 'logincheck');
-    }
-  }
-
-
   render() {
       return (
-        <form>
+        <form className="login-form">
           <label htmlFor="email">Email:</label>
           <input
+            className="login-input"
             name="email"
             type="text"
             placeholder="email"
@@ -46,6 +36,7 @@ class LogIn extends Component {
           />
           <label htmlFor="password">Password:</label>
           <input
+            className="login-input"
             name="password"
             type="text"
             placeholder="password"
@@ -53,7 +44,7 @@ class LogIn extends Component {
             onChange={(event) => this.updateLoginFields(event)}
           />
           <Link to="/">
-            <button onClick={(event) => this.loginUser(event)}>Submit</button>
+            <button onClick={(event) => this.loginUser(event)} className="submit-button">Submit</button>
           </Link>
         </form>
       );

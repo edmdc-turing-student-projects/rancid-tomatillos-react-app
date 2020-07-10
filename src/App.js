@@ -93,7 +93,7 @@ class App extends Component {
           ></Route>
 
           <Route exact path="/login">
-            <LogIn postUser={this.postUser} user={this.state.user.id} />
+            <LogIn postUser={this.postUser} />
           </Route>
 
         <Route
