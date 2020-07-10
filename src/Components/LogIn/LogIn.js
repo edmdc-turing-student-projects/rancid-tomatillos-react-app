@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import "./LogIn.css";
 
@@ -19,15 +19,24 @@ class LogIn extends Component {
   }
 
   loginUser = async (event) => {
-    const test2 = await this.props.postUser(this.state);    
-    if (test2 === true) {
-      console.log(true,'inside true')
-      // this.props.postUser(this.state);
-    } else {
-      event.preventDefault();
-      console.log('help');
+    event.preventDefault();
+    try {
+      // console.log(test2, 'test2');
+      return await this.props.postUser(this.state);    
+      
+    } catch(error) {
+      console.log(error, 'error');
       
     }
+    // if (test2 === true) {
+    //   console.log(true,'inside true')
+    //   // this.props.postUser(this.state);
+    // } else {
+    //   // event.preventDefault();
+    //   console.log('help');
+    //   return <Redirect to="/login" from="/"/>
+    // }
+    // return test2
     // return this.props.postUser(this.state);
   }
 
@@ -52,9 +61,9 @@ class LogIn extends Component {
             value={this.state.password}
             onChange={(event) => this.updateLoginFields(event)}
           />
-            <Link to="/">
+            {/* <Link to="/"> */}
               <button onClick={(event) => this.loginUser(event)} className="submit-button">Submit</button>
-            </Link>
+            {/* </Link> */}
         </form>
       );
   }

@@ -34,7 +34,15 @@ class MovieMainPage extends Component {
                 alt={`Backdrop for ${this.state.movie.title}`}
               />
               <figcaption>
-                <h4>{this.state.movie.overview}</h4>
+                <h4>Title: {this.state.movie.title}</h4>
+                <p>Tagline: {this.state.movie.tagline}</p>
+                <p>Overview: {this.state.movie.overview}</p>
+                <p>Release Data: {this.state.movie.release_date}</p>
+                <p>Genre(s): {(this.state.movie.genres).join(', ')}</p>
+                <p>Budget: ${(this.state.movie.budget).toLocaleString('en')}</p>
+                <p>Revenue: ${(this.state.movie.revenue).toLocaleString('en')}</p>
+                <p>Average Rating: {Math.round(this.state.movie.average_rating)}</p>
+                <p>Runtime: {this.state.movie.average_rating} Minutes</p>
               </figcaption>
             </figure>
           </>

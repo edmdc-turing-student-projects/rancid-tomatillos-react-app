@@ -47,13 +47,13 @@ class App extends Component {
     try {
       const { user } = await loginUser(userCredentials);
       this.setState({ user: user });
-      console.log(true);
-      return true
+      console.log(true, 'inside postUser');
+      // return true
     } catch (error) {
       // alert('Incorrect email/password')
-      console.log(false);
+      console.log(JSON.parse(error), 'error inside PostUser');
       this.setState({ error: error });
-      return false
+      return error
     }
   };
 
