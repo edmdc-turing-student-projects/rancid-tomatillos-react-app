@@ -47,9 +47,13 @@ class App extends Component {
     try {
       const { user } = await loginUser(userCredentials);
       this.setState({ user: user });
+      console.log(true);
+      return true
     } catch (error) {
-      alert('Incorrect email/password')
+      // alert('Incorrect email/password')
+      console.log(false);
       this.setState({ error: error });
+      return false
     }
   };
 

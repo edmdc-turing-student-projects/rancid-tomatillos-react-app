@@ -58,7 +58,7 @@ describe.only("Login", () => {
   it("should send user back to homepage once they login", () => {
     const history = createMemoryHistory()
     const mockUserLogin = jest.fn();
-    const {getByRole, getByText, getByPlaceholderText } = render(
+    const {getByRole, getByPlaceholderText } = render(
       <Router history={history}>
         <Login postUser={mockUserLogin}/>
       </Router>
@@ -73,16 +73,7 @@ describe.only("Login", () => {
     fireEvent.change(email, { target: { value: userTestEmail } });
     fireEvent.change(password, { target: { value: userTestPassword } });
     fireEvent.click(button);
-    
-    // const welcomeText = getByText(/Welcome, Greg!/i)
-  // fireEvent.click(getByText(/about/i))
 
-  // check that the content changed to the new page
-  // expect(button).not.toBeInTheDocument()
-    expect(history.location.pathname).toBe("/")
-      
-  // Welcome, Greg!
-
-
+    expect(history.location.pathname).toBe("/");
   })
 });

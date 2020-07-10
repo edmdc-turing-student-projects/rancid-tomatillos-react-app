@@ -18,8 +18,17 @@ class LogIn extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  loginUser() {
-    this.props.postUser(this.state);
+  loginUser = async (event) => {
+    const test2 = await this.props.postUser(this.state);    
+    if (test2 === true) {
+      console.log(true,'inside true')
+      // this.props.postUser(this.state);
+    } else {
+      event.preventDefault();
+      console.log('help');
+      
+    }
+    // return this.props.postUser(this.state);
   }
 
   render() {
@@ -43,9 +52,9 @@ class LogIn extends Component {
             value={this.state.password}
             onChange={(event) => this.updateLoginFields(event)}
           />
-          <Link to="/">
-            <button onClick={(event) => this.loginUser(event)} className="submit-button">Submit</button>
-          </Link>
+            <Link to="/">
+              <button onClick={(event) => this.loginUser(event)} className="submit-button">Submit</button>
+            </Link>
         </form>
       );
   }
