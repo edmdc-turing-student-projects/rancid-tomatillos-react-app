@@ -48,6 +48,7 @@ class App extends Component {
       const { user } = await loginUser(userCredentials);
       this.setState({ user: user });
     } catch (error) {
+      alert('Incorrect email/password')
       this.setState({ error: error });
     }
   };
@@ -65,6 +66,7 @@ class App extends Component {
     return (
       <section>
         <h2> Rancid Tomatillos </h2>
+        {this.state.user.name && <h3>Welcome, {this.state.user.name}!</h3>}
 
         <nav>
           {this.state.user.email ? (
@@ -91,7 +93,7 @@ class App extends Component {
           ></Route>
 
           <Route exact path="/login">
-            <LogIn postUser={this.postUser} />
+            <LogIn postUser={this.postUser} user={this.state.user.id} />
           </Route>
 
         <Route
