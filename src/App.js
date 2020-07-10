@@ -47,6 +47,7 @@ class App extends Component {
     try {
       const { user } = await loginUser(userCredentials);
       this.setState({ user: user });
+      localStorage.setItem('user', JSON.stringify(user))
     } catch (error) {
       this.setState({ error: error });
     }
