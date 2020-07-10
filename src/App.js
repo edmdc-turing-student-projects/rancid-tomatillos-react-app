@@ -7,11 +7,11 @@ import MovieMainPage from "./Components/MovieMainPage/MovieMainPage";
 import { getAllMovies, loginUser, movieRatingsRequests } from "./apiCalls";
 
 class App extends Component {
-  constructor() {
+  constructor({user = {}}) {
     super();
     this.state = {
       movies: [],
-      user: {},
+      user: user,
       error: "",
     };
     this.url = "https://rancid-tomatillos.herokuapp.com/api/v2";
