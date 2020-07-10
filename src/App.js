@@ -59,6 +59,7 @@ class App extends Component {
       this.setState({
         user: {},
       });
+      localStorage.clear();
     }
   };
 
