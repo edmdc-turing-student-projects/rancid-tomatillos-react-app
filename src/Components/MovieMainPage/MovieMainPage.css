@@ -3,7 +3,7 @@
   width: 100%;
 }
 
-.poop {
+.movie-image {
   height:70vh;
   width: 35vw;
   top: 22.8vh; 
@@ -12,55 +12,14 @@
   border-radius: 15px;
 }
 
-#bg {
+#figure-container {
 display: flex;
 border-radius: 15px;
 margin-left: 9%;
 }
-/* background-image { */
-  /* min-height: 100%;
-  min-width: 1024px;
-  width: 100%; */
-  /* height: auto; */
-	
-  /* Set up positioning */
-  /* position: fixed;
-  top: -10%;
-  left: 0; 
-  background-size:cover;
-} */
 
-
-/* #bg {
-  position: fixed; 
-  top: 10%; 
-  left: -50%; 
-  width: 200%; 
-  height: 85vh;
-  opacity: 35%;
-} 
-#bg img {
-  position: fixed; 
-  top: 40%; 
-  left: 0; 
-  right: 0; 
-  bottom: 0; 
-  margin: auto; 
-  width: 100%;
-} */
-
-/* #bg {
-  position: fixed; 
-  top: 25%; 
-  left: -50%; 
-	
-  min-width: 100%;
-  min-height: 100%;
-  opacity: 35%;
-} */
-
-.test {
-  background-color: white;
+.movie-info {
+  background-color: blanchedalmond;
   height:70vh;
   color: black;
   display: flex;
@@ -72,6 +31,11 @@ margin-left: 9%;
   overflow: scroll;
 }
 
+.movie-info button {
+  border-radius: 15px;
+  width: fit-content;
+}
+
 p {
   margin-top: 1%;
   margin-bottom: 1%
@@ -80,9 +44,4 @@ p {
 .tagline {
   margin-top: -2%;
   margin-bottom: 1%;
-}
-
-.test button {
-  border-radius: 15px;
-  width: fit-content;
 }

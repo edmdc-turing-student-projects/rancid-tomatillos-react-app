@@ -28,13 +28,13 @@ class MovieMainPage extends Component {
       <section id="single-movie">
         {this.state && (
           <section>
-            <figure id="bg">
+            <figure id="figure-container">
               <img
-                className="poop"
+                className="movie-image"
                 src={this.state.movie.backdrop_path}
                 alt={`Backdrop for ${this.state.movie.title}`}
               />
-              <section className="test">
+              <section className="movie-info">
                 <h3>{this.state.movie.title}</h3>
                 <h4 className="tagline">{this.state.movie.tagline}</h4>
                 <p><strong>Overview:</strong> <br></br> {this.state.movie.overview}</p>
