@@ -76,10 +76,9 @@ class MovieRatingForm extends Component {
     return (
       <>
         <form onChange={this.changeHandler}>{this.formInputs()}
-          <button onClick={(event) => {
-            event.preventDefault();
+          <button onClick={() => {
             this.postMovieRating()
-          }}>Submit Review</button>
+          }} type="button">Submit Review</button>
         </form>
       </>
     )

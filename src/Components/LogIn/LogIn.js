@@ -10,6 +10,8 @@ class LogIn extends Component {
     this.state = {
       email: "",
       password: "",
+      error: "",
+      // redirect: false,
     };     
   }
 
@@ -18,29 +20,21 @@ class LogIn extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  loginUser = async (event) => {
-    event.preventDefault();
-    try {
-      // console.log(test2, 'test2');
-      return await this.props.postUser(this.state);    
-      
-    } catch(error) {
-      console.log(error, 'error');
-      
+  loginUser = async () => {
+    const potato = await this.props.postUser(this.state) 
+    console.log(potato, 'potato');
+    
+    if(potato !== 'something went wrong!') {
+      this.setState({redirect: true})
+    } else {
+      this.setState({error: potato})
     }
-    // if (test2 === true) {
-    //   console.log(true,'inside true')
-    //   // this.props.postUser(this.state);
-    // } else {
-    //   // event.preventDefault();
-    //   console.log('help');
-    //   return <Redirect to="/login" from="/"/>
-    // }
-    // return test2
-    // return this.props.postUser(this.state);
   }
 
   render() {
+    if(this.state.redirect) {
+      return <Redirect to='/'/>
+    }
       return (
         <form className="login-form">
           <label htmlFor="email">Email:</label>
@@ -61,9 +55,8 @@ class LogIn extends Component {
             value={this.state.password}
             onChange={(event) => this.updateLoginFields(event)}
           />
-            {/* <Link to="/"> */}
-              <button onClick={(event) => this.loginUser(event)} className="submit-button">Submit</button>
-            {/* </Link> */}
+            <button onClick={(event) => this.loginUser(event)}className="submit-button" type="button">Submit</button>
+        
         </form>
       );
   }

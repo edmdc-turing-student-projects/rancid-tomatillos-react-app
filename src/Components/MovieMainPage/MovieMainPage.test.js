@@ -46,7 +46,8 @@ describe('MovieMainPage', () => {
     const { findByText } = render(<MovieMainPage {...movie2Render} rootUrl="https://rancid-tomatillos.herokuapp.com/api/v2/movies/475430" />);
     
     const movieInfo = await waitFor(() => findByText('Artemis Fowl is a 12-year-old genius and descendant of a long line of criminal masterminds. He soon finds himself in an epic battle against a race of powerful underground fairies who may be behind his father\'s disappearance.'));
-    
+
     expect(movieInfo).toBeInTheDocument();
+
   })
 });

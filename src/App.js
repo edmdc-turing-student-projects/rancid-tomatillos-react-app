@@ -48,11 +48,13 @@ class App extends Component {
       const { user } = await loginUser(userCredentials);
       this.setState({ user: user });
       localStorage.setItem('user', JSON.stringify(user))
+      this.setState({error: ""})
+      return this.state.user.name
     } catch (error) {
       // alert('Incorrect email/password')
-      console.log(JSON.parse(error), 'error inside PostUser');
-      this.setState({ error: error });
-      return error
+      console.log((error.message), 'error inside PostUser');
+      this.setState({ error: "something went wrong!" });
+      return "something went wrong!"
     }
   };
 
@@ -73,6 +75,7 @@ class App extends Component {
         <section className="header">
           <Link className="headerTitle" to="/">
              <h1>Rancid Tomatillos</h1>
+            {this.state.user.name && <h2>{`Welcome, ${this.state.user.name}`}</h2>}
           </Link>
           <nav className="navBar">
             {this.state.user.name ? (
