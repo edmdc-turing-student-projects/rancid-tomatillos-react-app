@@ -72,8 +72,12 @@ class App extends Component {
 
         <section className="header">
           <Link className="headerTitle" to="/">
-            <h1>Rancid Tomatillos</h1>
-            {this.state.user.name && <h3>{`Welcome, ${this.state.user.name}!`}</h3>}
+            {!this.state.user.name ? (<h1>Rancid Tomatillos</h1>) : 
+              (<> 
+                <h1 className="title">Rancid Tomatillos</h1>
+                <h3>{`Welcome, ${this.state.user.name}!`}</h3>
+              </>)
+            }
           </Link>
           <nav className="navBar">
             {this.state.user.name ? (
