@@ -18,9 +18,9 @@ class MovieMainPage extends Component {
   }
 
   findMovieRating (movie)  {
-    if (!this.props.ratings.length) return <MovieRatingForm userId={this.props.ratings.user_id} movieId={movie.id}/>
+    if (!this.props.ratings.length) return <MovieRatingForm userId={this.props.ratings[0].user_id} movieId={movie.id}/>
     const movieRating = this.props.ratings.find( rating => movie.id === rating.movie_id)
-    return (movieRating) ? <MovieRatingForm userId={this.props.ratings.user_id} movieId={movie.id} userRating={movieRating}/> : <MovieRatingForm userId={this.props.ratings.user_id} movieId={movie.id} />
+    return (movieRating) ? <MovieRatingForm userId={this.props.ratings[0].user_id} movieId={movie.id} userRating={movieRating}/> : <MovieRatingForm userId={this.props.ratings[0].user_id} movieId={movie.id} />
   }
 
   render() {    
