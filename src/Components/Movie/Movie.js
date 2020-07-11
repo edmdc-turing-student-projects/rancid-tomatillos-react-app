@@ -1,21 +1,23 @@
 import React from "react";
 import "./Movie.css";
+import { formatDate } from "../../utils";
+
 
 const Movie = ({ posterPath, title, averageRating, releaseDate }) => {
-  const formatDate = (releaseDate) => {
-    const options = {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
+  // const formatDate = (releaseDate) => {
+  //   const options = {
+  //     year: "numeric",
+  //     month: "long",
+  //     day: "numeric",
+  //   };
 
-    const formattedDate = new Date(releaseDate).toLocaleString(
-      "en-US",
-      options
-    );
+  //   const formattedDate = new Date(releaseDate).toLocaleString(
+  //     "en-US",
+  //     options
+  //   );
 
-    return `Released on ${formattedDate}`;
-  };
+  //   return `Released on ${formattedDate}`;
+  // };
 
   return (
     <article>
