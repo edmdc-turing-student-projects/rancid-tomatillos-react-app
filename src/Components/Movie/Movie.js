@@ -4,21 +4,6 @@ import { formatDate } from "../../utils";
 
 
 const Movie = ({ posterPath, title, averageRating, releaseDate }) => {
-  // const formatDate = (releaseDate) => {
-  //   const options = {
-  //     year: "numeric",
-  //     month: "long",
-  //     day: "numeric",
-  //   };
-
-  //   const formattedDate = new Date(releaseDate).toLocaleString(
-  //     "en-US",
-  //     options
-  //   );
-
-  //   return `Released on ${formattedDate}`;
-  // };
-
   return (
     <article>
       <figure>
