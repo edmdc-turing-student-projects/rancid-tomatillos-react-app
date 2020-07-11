@@ -21,7 +21,7 @@ const Movie = ({ posterPath, title, averageRating, releaseDate }) => {
     <article>
       <figure>
         <div>
-          <img alt={`${title} movie poster`} src={posterPath} />
+          <img alt={`${title} movie poster`} src={posterPath} className="all-movies"/>
         </div>
         <figcaption>
           <h4>{title}</h4>

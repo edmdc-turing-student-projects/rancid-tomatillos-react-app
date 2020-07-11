@@ -1,8 +1,57 @@
-section {
+#single-movie {
   height: 85vh;
+  width: 100%;
 }
 
-.poop {
+/* .poop {
   height:80vh;
   width: 95vw;
+} */
+
+/* background-image { */
+  /* min-height: 100%;
+  min-width: 1024px;
+  width: 100%; */
+  /* height: auto; */
+	
+  /* Set up positioning */
+  /* position: fixed;
+  top: -10%;
+  left: 0; 
+  background-size:cover;
+} */
+
+#bg {
+  position: fixed; 
+  top: 10%; 
+  left: -50%; 
+  width: 200%; 
+  /* height: 200%;  */
+  height: 85vh;
+  opacity: 35%;
+} 
+#bg img {
+  position: fixed; 
+  top: 25%; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  /* min-width: 50%; */
+  /* min-height: 50%; */
+  width: 100%;
+}
+
+/* #bg {
+  position: fixed; 
+  top: 25%; 
+  left: -50%; 
+	
+  min-width: 100%;
+  min-height: 100%;
+  opacity: 35%;
+} */
+
+.test {
+  position: absolute;
 }
