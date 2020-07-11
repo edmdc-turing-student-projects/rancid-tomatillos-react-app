@@ -7,11 +7,11 @@ import MovieMainPage from "./Components/MovieMainPage/MovieMainPage";
 import { getAllMovies, loginUser, movieRatingsRequests } from "./apiCalls";
 
 class App extends Component {
-  constructor() {
+  constructor({user = {}}) {
     super();
     this.state = {
       movies: [],
-      user: {},
+      user: user,
       error: "",
     };
     this.url = "https://rancid-tomatillos.herokuapp.com/api/v2";
@@ -47,66 +47,75 @@ class App extends Component {
     try {
       const { user } = await loginUser(userCredentials);
       this.setState({ user: user });
+      localStorage.setItem('user', JSON.stringify(user))
     } catch (error) {
       this.setState({ error: error });
     }
   };
 
-  logOut = (event) => {
+  logOutUser = (event) => {
     event.preventDefault();
     if (event.target.innerHTML === "Log Out") {
       this.setState({
         user: {},
       });
+      localStorage.clear();
     }
   };
 
   render() {
     return (
-      <section>
-        <h2> Rancid Tomatillos </h2>
+      <main className="App">
 
-        <nav>
-          {this.state.user.email ? (
-              <button onClick={(event) => this.logOut(event)}>
-              Log Out
+        <section className="header">
+          <Link className="headerTitle" to="/">
+             <h1>Rancid Tomatillos</h1>
+          </Link>
+          <nav className="navBar">
+            {this.state.user.name ? (
+              <button className="navBar" onClick={(event) => this.logOutUser(event)}>
+                Log Out
               </button>
             ) : (
-            <Link to="/login">
-              <button>Log In!</button>
+              <Link className="navBar" to="/login">
+                <button>Log In!</button>
+              </Link>
+            )}
+            <Link className="navBar" to="/">
+              <button>Home</button>
             </Link>
-          )}
-        </nav>
+          </nav>
+        </section>
 
-          <Route
-            exact
-            path="/movies/:id"
-            render={({ match }) => {
-              const { id } = match.params;
-              const movie2Render = this.state.movies.find(
-                (movie) => movie.id === parseInt(id)
-              );
-              return <MovieMainPage {...movie2Render} rootUrl={this.url} />;
-            }}
-          ></Route>
+        <Route
+          exact
+          path="/movies/:id"
+          render={({ match }) => {
+            const { id } = match.params;
+            const movie2Render = this.state.movies.find(
+              (movie) => movie.id === parseInt(id)
+            );
+            return <MovieMainPage {...movie2Render} rootUrl={this.url} />;
+          }}
+        ></Route>
 
-          <Route exact path="/login">
-            <LogIn postUser={this.postUser} />
-          </Route>
+        <Route exact path="/login">
+          <LogIn postUser={this.postUser} />
+        </Route>
 
         <Route
           exact
           path='/user/:id'>
           <Movies movies={this.state.movies} ratings={this.state.ratings} userId={this.state.user.id} />
           {!this.state.user.name && <Redirect to="/" />}
-          </Route>
+        </Route>
 
-          <Route exact path="/">
-            {this.state.user.name && <Redirect to={`/user/${this.state.user.id}`} />}
-            {this.state.movies && <Movies movies={this.state.movies} />}
-          </Route>
+        <Route exact path="/">
+          {this.state.user.name && <Redirect to={`/user/${this.state.user.id}`} />}
+          {this.state.movies && <Movies movies={this.state.movies} />}
+        </Route>
 
-      </section>
+      </main>
     );
   }
 }
