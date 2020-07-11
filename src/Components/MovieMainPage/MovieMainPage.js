@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import MovieRatingForm from "../MovieRatingForm/MovieRatingForm"
 import "./MovieMainPage.css";
 
 class MovieMainPage extends Component {
@@ -20,7 +21,13 @@ class MovieMainPage extends Component {
     return getMovieDetails();
   }
 
-  render() {
+  findMovieRating (movie)  {
+    if (!this.props.ratings.length) return <MovieRatingForm userId={this.props.ratings.user_id} movieId={movie.id}/>
+    const movieRating = this.props.ratings.find( rating => movie.id === rating.movie_id)
+    return (movieRating) ? <MovieRatingForm userId={this.props.ratings.user_id} movieId={movie.id} userRating={movieRating}/> : <MovieRatingForm userId={this.props.ratings.user_id} movieId={movie.id} />
+  }
+
+  render() {    
     return (
       <section id="single-movie">
         {this.state && (
@@ -40,7 +47,8 @@ class MovieMainPage extends Component {
                 <p><strong>Budget</strong>: <br></br> ${(this.state.movie.budget).toLocaleString('en')}</p>
                 <p><strong>Revenue:</strong> <br></br> ${(this.state.movie.revenue).toLocaleString('en')}</p>
                 <p><strong>Average Rating:</strong> <br></br> {Math.round(this.state.movie.average_rating)}</p>
-                <p><strong>Runtime:</strong> <br></br> {this.state.movie.average_rating} Minutes</p>
+                <p><strong>Runtime:</strong> <br></br> {this.state.movie.runtime} Minutes</p>
+                {(this.props.ratings) ? this.findMovieRating(this.state.movie) : null}
               </section>
             </figure>
           </section>

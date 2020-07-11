@@ -8,16 +8,14 @@
   width: 35vw;
   top: 22.8vh; 
   left: 2.8vw;
-  padding-right: 2%;
+  margin-right: 3%;
+  border-radius: 15px;
 }
-
-/* .poop::after {
-  opacity: 20%;
-} */
 
 #bg {
 display: flex;
-border: 5px solid black;
+border-radius: 15px;
+margin-left: 9%;
 }
 /* background-image { */
   /* min-height: 100%;
@@ -70,6 +68,8 @@ border: 5px solid black;
   text-align: left;
   padding-left: 3%;
   padding-right: 3%;
+  border-radius: 15px;
+  overflow: scroll;
 }
 
 p {

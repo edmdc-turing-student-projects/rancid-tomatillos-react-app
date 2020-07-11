@@ -65,7 +65,7 @@ class MovieRatingForm extends Component {
   userMovieRatingFragment = () => {
     return (
       <>
-        <h5>{`Your Rating: ${this.state.userRating.rating}`}</h5>
+        <p><strong>Your Rating:</strong> {this.state.userRating.rating}</p>
         <button onClick={this.deleteMovieRating}> Delete </button>
       </>
     )
