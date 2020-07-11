@@ -1,25 +1,33 @@
 import React, { Component } from "react";
 import MovieRatingForm from "../MovieRatingForm/MovieRatingForm"
 import "./MovieMainPage.css";
+import { getSingleMovieInfo } from "../../apiCalls";
+
 
 class MovieMainPage extends Component {
   componentDidMount() {
-    const requestUrl = `${this.props.rootUrl}/movies/${this.props.id}`;
     const getMovieDetails = async () => {
       try {
-        const response = await fetch(requestUrl);
-        if (response.ok) {
-          const movieDetails = await response.json();
-          this.setState({ ...movieDetails });
-        } else {
-          throw new Error({ ...response });
-        }
+        const movieDetails = await getSingleMovieInfo(this.props.id);
+        this.setState({ ...movieDetails });
       } catch (error) {
         this.setState({ ...error });
       }
     };
     return getMovieDetails();
   }
+
+  // componentDidMount() {
+  //   const getMoviesRequest = async () => {
+  //     try {
+  //       let movies = await getAllMovies();
+  //       this.setState({ movies: movies.movies, error: "" });
+  //     } catch (error) {
+  //       this.setState({ error: error });
+  //     }
+  //   };
+  //   return getMoviesRequest();
+  // }
 
   findMovieRating (movie)  {
     if (!this.props.ratings.length) return <MovieRatingForm userId={this.props.ratings.user_id} movieId={movie.id}/>
