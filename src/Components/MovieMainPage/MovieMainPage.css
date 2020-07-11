@@ -81,3 +81,8 @@ p {
   margin-top: -2%;
   margin-bottom: 1%;
 }
+
+button.test {
+  border-radius: 15px;
+  width: 10%;
+}

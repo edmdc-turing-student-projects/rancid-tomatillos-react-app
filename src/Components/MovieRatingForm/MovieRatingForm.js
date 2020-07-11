@@ -13,6 +13,7 @@ class MovieRatingForm extends Component {
       error: ""
     }
   }
+
   formInputs = () => {
     const scores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     return scores.map((score) => {
@@ -78,7 +79,7 @@ class MovieRatingForm extends Component {
           <button onClick={(event) => {
             event.preventDefault();
             this.postMovieRating()
-          }}>Submit</button>
+          }}>Submit Review</button>
         </form>
       </>
     )

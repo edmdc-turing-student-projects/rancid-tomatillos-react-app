@@ -46,8 +46,8 @@ class MovieMainPage extends Component {
                 <p><strong>Genre(s):</strong> <br></br> {(this.state.movie.genres).join(', ')}</p>
                 <p><strong>Budget</strong>: <br></br> ${(this.state.movie.budget).toLocaleString('en')}</p>
                 <p><strong>Revenue:</strong> <br></br> ${(this.state.movie.revenue).toLocaleString('en')}</p>
-                <p><strong>Average Rating:</strong> <br></br> {Math.round(this.state.movie.average_rating)}</p>
                 <p><strong>Runtime:</strong> <br></br> {this.state.movie.runtime} Minutes</p>
+                <p><strong>Average Rating:</strong> <br></br> {Math.round(this.state.movie.average_rating)}</p>
                 {(this.props.ratings) ? this.findMovieRating(this.state.movie) : null}
               </section>
             </figure>
