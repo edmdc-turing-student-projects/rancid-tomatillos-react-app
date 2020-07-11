@@ -11,7 +11,7 @@ class LogIn extends Component {
       email: "",
       password: "",
       error: "",
-      // redirect: false,
+      redirect: false,
     };     
   }
 
@@ -21,44 +21,43 @@ class LogIn extends Component {
   }
 
   loginUser = async () => {
-    const potato = await this.props.postUser(this.state) 
-    console.log(potato, 'potato');
+    const userInfo = await this.props.postUser(this.state) 
     
-    if(potato !== 'something went wrong!') {
+    if(userInfo !== 'Incorrect Email/Password') {
       this.setState({redirect: true})
     } else {
-      this.setState({error: potato})
+      alert('Incorrect Email/Password')
+      this.setState({error: userInfo})
     }
   }
 
   render() {
     if(this.state.redirect) {
-      return <Redirect to='/'/>
+      return <Redirect to="/"/>
     }
-      return (
-        <form className="login-form">
-          <label htmlFor="email">Email:</label>
-          <input
-            className="login-input"
-            name="email"
-            type="text"
-            placeholder="email"
-            value={this.state.email}
-            onChange={(event) => this.updateLoginFields(event)}
-          />
-          <label htmlFor="password">Password:</label>
-          <input
-            className="login-input"
-            name="password"
-            type="text"
-            placeholder="password"
-            value={this.state.password}
-            onChange={(event) => this.updateLoginFields(event)}
-          />
-            <button onClick={(event) => this.loginUser(event)}className="submit-button" type="button">Submit</button>
-        
-        </form>
-      );
+    return (
+      <form className="login-form">
+        <label htmlFor="email">Email:</label>
+        <input
+          className="login-input"
+          name="email"
+          type="text"
+          placeholder="email"
+          value={this.state.email}
+          onChange={(event) => this.updateLoginFields(event)}
+        />
+        <label htmlFor="password">Password:</label>
+        <input
+          className="login-input"
+          name="password"
+          type="text"
+          placeholder="password"
+          value={this.state.password}
+          onChange={(event) => this.updateLoginFields(event)}
+        />
+        <button onClick={(event) => this.loginUser(event)} className="submit-button" type="button">Submit</button>
+      </form>
+    );
   }
 }
 export default LogIn;

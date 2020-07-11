@@ -34,8 +34,6 @@ class MovieRatingForm extends Component {
   }
 
   changeHandler = (event) => {
-    console.log(event.target.value);
-
     this.setState({ rating:  event.target.value})
   }
 
@@ -46,7 +44,6 @@ class MovieRatingForm extends Component {
    }
     try {
       const response = await addRating(this.state.userId, movieInfo);
-      console.log(response, "response to submited rating");
       this.setState({userRating: response.rating})
     } catch(error)  {
       this.setState({ error: error });
