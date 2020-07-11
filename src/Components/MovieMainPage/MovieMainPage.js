@@ -17,18 +17,6 @@ class MovieMainPage extends Component {
     return getMovieDetails();
   }
 
-  // componentDidMount() {
-  //   const getMoviesRequest = async () => {
-  //     try {
-  //       let movies = await getAllMovies();
-  //       this.setState({ movies: movies.movies, error: "" });
-  //     } catch (error) {
-  //       this.setState({ error: error });
-  //     }
-  //   };
-  //   return getMoviesRequest();
-  // }
-
   findMovieRating (movie)  {
     if (!this.props.ratings.length) return <MovieRatingForm userId={this.props.ratings.user_id} movieId={movie.id}/>
     const movieRating = this.props.ratings.find( rating => movie.id === rating.movie_id)
