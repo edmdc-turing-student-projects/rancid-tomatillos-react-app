@@ -21,7 +21,6 @@ class App extends Component {
     const getMoviesRequest = async () => {
       try {
         let movies = await getAllMovies();
-        console.log(movies, "mock data")
         this.setState({ movies: movies.movies, error: "" });
       } catch (error) {
         this.setState({ error: error });
@@ -76,7 +75,7 @@ class App extends Component {
             {!this.state.user.name ? (<h1>Rancid Tomatillos</h1>) : 
               (<>
                 <h1 className="title">Rancid Tomatillos</h1>
-                <h3>{`Welcome, ${this.state.user.name}!`}</h3>
+                <h3 aria-label="Welcome Banner">{`Welcome, ${this.state.user.name}!`}</h3>
               </>)
             }
           </Link>
