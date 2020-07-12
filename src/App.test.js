@@ -65,7 +65,7 @@ describe("App", () => {
     expect(loginButton).toBeInTheDocument();
   });
 
-  it.skip('login button should link to login page', () => {
+  it('login button should link to login page', () => {
 
     const {getByRole} = render(
       <MemoryRouter>
@@ -73,10 +73,11 @@ describe("App", () => {
       </MemoryRouter>
     )
 
-    const loginButton = getByRole('button', {name: 'Log In'});
+    const loginButton = getByRole('button', {name: 'Log In!'});
+
     fireEvent.click(loginButton);
 
-    expect(getByRole('link', {href: '/login'})).toBeInTheDocument();
+    expect(getByRole('form', {name: 'Login Form'})).toBeInTheDocument();
   });
 
   // it('login button should route to login page', async () => {

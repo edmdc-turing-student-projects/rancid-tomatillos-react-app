@@ -12,7 +12,7 @@ class LogIn extends Component {
       password: "",
       error: "",
       redirect: false,
-    };     
+    };
   }
 
   updateLoginFields(event) {
@@ -21,8 +21,8 @@ class LogIn extends Component {
   }
 
   loginUser = async () => {
-    const userInfo = await this.props.postUser(this.state) 
-    
+    const userInfo = await this.props.postUser(this.state)
+
     if(userInfo !== 'Incorrect Email/Password') {
       this.setState({redirect: true})
     } else {
@@ -36,7 +36,7 @@ class LogIn extends Component {
       return <Redirect to="/"/>
     }
     return (
-      <form className="login-form">
+      <form className="login-form" aria-label="Login Form">
         <label htmlFor="email">Email:</label>
         <input
           className="login-input"
