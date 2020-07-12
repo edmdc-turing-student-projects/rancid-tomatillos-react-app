@@ -36,7 +36,7 @@ class LogIn extends Component {
       return <Redirect to="/"/>
     }
     return (
-      <form className="login-form" aria-label="Login Form">
+      <form className="login-form" title="Login Form">
         <label htmlFor="email">Email:</label>
         <input
           className="login-input"

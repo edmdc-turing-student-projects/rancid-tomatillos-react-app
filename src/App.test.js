@@ -67,7 +67,7 @@ describe("App", () => {
 
   it('login button should link to login page', () => {
 
-    const {getByRole} = render(
+    const {getByRole, getByPlaceholderText} = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
@@ -77,7 +77,8 @@ describe("App", () => {
 
     fireEvent.click(loginButton);
 
-    expect(getByRole('form', {name: 'Login Form'})).toBeInTheDocument();
+    expect(getByPlaceholderText('email')).toBeInTheDocument();
+    expect(getByPlaceholderText('password')).toBeInTheDocument();
   });
 
   // it('login button should route to login page', async () => {
