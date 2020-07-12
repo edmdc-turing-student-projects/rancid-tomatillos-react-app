@@ -6,18 +6,20 @@ import { MemoryRouter } from "react-router-dom";
 import { getAllMovies } from "./apiCalls";
 jest.mock("./apiCalls");
 
-getAllMovies.mockResolvedValue([
-  {
-    average_rating: 6.333333333333333,
-    backdrop_path:
+getAllMovies.mockResolvedValue({
+  movies: [
+    {
+      average_rating: 6.333333333333333,
+      backdrop_path:
       "https://image.tmdb.org/t/p/original//o0F8xAt8YuEm5mEZviX5pEFC12y.jpg",
-    id: 475430,
-    poster_path:
+      id: 475430,
+      poster_path:
       "https://image.tmdb.org/t/p/original//tI8ocADh22GtQFV28vGHaBZVb0U.jpg",
-    release_date: "2020-06-12",
-    title: "Artemis Fowl",
-  },
-]);
+      release_date: "2020-06-12",
+      title: "Artemis Fowl",
+    },
+  ]
+});
 
 //INTEGRATION
 //test for presence of login button
@@ -40,21 +42,21 @@ describe("App", () => {
   });
 
   it("should render a movie", async () => {
-    const {getByText, findByText} = render(
+    const { findByRole } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
 
-    const movieTitle = await findByText('Released')
+    const movieTitle = await findByRole('listitem', {title: "Artemis Fowl"})
     // const movieTitle = await waitFor(() => getByText("Artemis Fowl"))
     expect(movieTitle).toBeInTheDocument();
   });
-  
+
   it('should have a login button', () => {
     const { getByRole } = render(
       <MemoryRouter>
-      <App />
+        <App />
       </MemoryRouter>
     )
 
