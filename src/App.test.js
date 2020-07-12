@@ -21,15 +21,6 @@ getAllMovies.mockResolvedValue({
   ]
 });
 
-//INTEGRATION
-//test for presence of login button
-//should say logout if this.state.user = {alkdfj}
-//should route to login page
-
-//Async
-//test for 200 response
-
-
 describe("App", () => {
   it("renders page title", () => {
     const { getByText } = render(
@@ -80,23 +71,6 @@ describe("App", () => {
     expect(getByPlaceholderText('email')).toBeInTheDocument();
     expect(getByPlaceholderText('password')).toBeInTheDocument();
   });
-
-  // it('login button should route to login page', async () => {
-  //   const { getByRole, getByPlaceholderText } = render(
-  //     <MemoryRouter>
-  //       <App />
-  //     </MemoryRouter>
-  //   )
-
-  //   const loginButton = getByRole('button', {name: 'Log In'});
-  //   fireEvent.click(loginButton);
-
-  //   // const inputs = await getByRole('input', {name: 'email'})
-  //   const loginForm = await getByPlaceholderText('email')
-  //   expect(loginForm).toBeInTheDocument();
-  // })
-
-
 });
 
 describe("App when user is logged in", () => {

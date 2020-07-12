@@ -50,7 +50,7 @@ class LogIn extends Component {
         <input
           className="login-input"
           name="password"
-          type="text"
+          type="password"
           placeholder="password"
           value={this.state.password}
           onChange={(event) => this.updateLoginFields(event)}
