@@ -60,7 +60,7 @@ describe("App", () => {
       </MemoryRouter>
     )
 
-    const loginButton = getByRole('button', {name: 'Log In'});
+    const loginButton = getByRole('button', {name: 'Log In!'});
 
     expect(loginButton).toBeInTheDocument();
   });
