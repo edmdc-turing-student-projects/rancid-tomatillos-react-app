@@ -2,7 +2,7 @@ import React from "react";
 import App from "./App";
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { BrowserRouter } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import { getAllMovies } from "./apiCalls";
 jest.mock("./apiCalls");
 
@@ -31,9 +31,9 @@ getAllMovies.mockResolvedValue([
 describe("App", () => {
   it("renders page title", () => {
     const { getByText } = render(
-      <BrowserRouter>
+      <MemoryRouter>
         <App />
-      </BrowserRouter>
+      </MemoryRouter>
     );
     const linkElement = getByText(/Rancid/);
     expect(linkElement).toBeInTheDocument();
@@ -41,9 +41,9 @@ describe("App", () => {
 
   it("should render a movie", async () => {
     const {getByText, findByText} = render(
-      <BrowserRouter>
+      <MemoryRouter>
         <App />
-      </BrowserRouter>
+      </MemoryRouter>
     );
 
     const movieTitle = await findByText('Released')
@@ -53,9 +53,9 @@ describe("App", () => {
   
   it('should have a login button', () => {
     const { getByRole } = render(
-      <BrowserRouter>
+      <MemoryRouter>
       <App />
-      </BrowserRouter>
+      </MemoryRouter>
     )
 
     const loginButton = getByRole('button', {name: 'Log In'});
@@ -65,9 +65,9 @@ describe("App", () => {
 
   it('login button should link to login page', () => {
     const {getByRole} = render(
-      <BrowserRouter>
+      <MemoryRouter>
         <App />
-      </BrowserRouter>
+      </MemoryRouter>
     )
 
     const loginButton = getByRole('button', {name: 'Log In'});
@@ -78,9 +78,9 @@ describe("App", () => {
 
   // it('login button should route to login page', async () => {
   //   const { getByRole, getByPlaceholderText } = render(
-  //     <BrowserRouter>
+  //     <MemoryRouter>
   //       <App />
-  //     </BrowserRouter>
+  //     </MemoryRouter>
   //   )
 
   //   const loginButton = getByRole('button', {name: 'Log In'});
