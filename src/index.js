@@ -5,7 +5,6 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 
 const user = JSON.parse(localStorage.getItem('user'))
-console.log(user)
 
 const router = () => {
   return (user) ? ( <BrowserRouter><App user={ user }/></BrowserRouter>) :

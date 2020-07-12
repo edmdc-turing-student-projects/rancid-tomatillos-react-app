@@ -1,8 +1,47 @@
-section {
+#single-movie {
   height: 85vh;
+  width: 100%;
 }
 
-.poop {
-  height:80vh;
-  width: 95vw;
+.movie-image {
+  height:70vh;
+  width: 35vw;
+  top: 22.8vh; 
+  left: 2.8vw;
+  margin-right: 3%;
+  border-radius: 15px;
+}
+
+#figure-container {
+display: flex;
+border-radius: 15px;
+margin-left: 9%;
+}
+
+.movie-info {
+  background-color: blanchedalmond;
+  height:70vh;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding-left: 3%;
+  padding-right: 3%;
+  border-radius: 15px;
+  overflow: scroll;
+}
+
+.movie-info button {
+  border-radius: 15px;
+  width: fit-content;
+}
+
+p {
+  margin-top: 1%;
+  margin-bottom: 1%
+}
+
+.tagline {
+  margin-top: -2%;
+  margin-bottom: 1%;
 }

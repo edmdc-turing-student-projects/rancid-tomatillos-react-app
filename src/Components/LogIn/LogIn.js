@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link, BrowserRouter } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+
 import "./LogIn.css";
 
 class LogIn extends Component {
@@ -9,7 +10,9 @@ class LogIn extends Component {
     this.state = {
       email: "",
       password: "",
-    };
+      error: "",
+      redirect: false,
+    };     
   }
 
   updateLoginFields(event) {
@@ -17,16 +20,26 @@ class LogIn extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  loginUser() {
-    // event.preventDefault();
-    this.props.postUser(this.state);
+  loginUser = async () => {
+    const userInfo = await this.props.postUser(this.state) 
+    
+    if(userInfo !== 'Incorrect Email/Password') {
+      this.setState({redirect: true})
+    } else {
+      alert('Incorrect Email/Password')
+      this.setState({error: userInfo})
+    }
   }
 
   render() {
+    if(this.state.redirect) {
+      return <Redirect to="/"/>
+    }
     return (
-      <form>
+      <form className="login-form">
         <label htmlFor="email">Email:</label>
         <input
+          className="login-input"
           name="email"
           type="text"
           placeholder="email"
@@ -35,17 +48,14 @@ class LogIn extends Component {
         />
         <label htmlFor="password">Password:</label>
         <input
+          className="login-input"
           name="password"
           type="text"
           placeholder="password"
           value={this.state.password}
           onChange={(event) => this.updateLoginFields(event)}
         />
-        {/* <BrowserRouter> */}
-        <Link to="/">
-          <button onClick={(event) => this.loginUser(event)}>Log In!</button>
-        </Link>
-        {/* </BrowserRouter> */}
+        <button onClick={(event) => this.loginUser(event)} className="submit-button" type="button">Submit</button>
       </form>
     );
   }

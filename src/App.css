@@ -30,6 +30,15 @@
   color: #F3F3F3;
 }
 
+.title {
+  margin-top: -10%;
+}
+
+.headerTitle h3 {
+  margin-top: -5%;
+  margin-bottom: 8%;
+}
+
 .headerTitle ::visited {
   color: #F3F3F3;
 }

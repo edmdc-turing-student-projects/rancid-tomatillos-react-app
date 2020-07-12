@@ -13,6 +13,7 @@ class MovieRatingForm extends Component {
       error: ""
     }
   }
+
   formInputs = () => {
     const scores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     return scores.map((score) => {
@@ -33,8 +34,6 @@ class MovieRatingForm extends Component {
   }
 
   changeHandler = (event) => {
-    console.log(event.target.value);
-
     this.setState({ rating:  event.target.value})
   }
 
@@ -45,7 +44,6 @@ class MovieRatingForm extends Component {
    }
     try {
       const response = await addRating(this.state.userId, movieInfo);
-      console.log(response, "response to submited rating");
       this.setState({userRating: response.rating})
     } catch(error)  {
       this.setState({ error: error });
@@ -65,7 +63,7 @@ class MovieRatingForm extends Component {
   userMovieRatingFragment = () => {
     return (
       <>
-        <h5>{`Your Rating: ${this.state.userRating.rating}`}</h5>
+        <p><strong>Your Rating:</strong> {this.state.userRating.rating}</p>
         <button onClick={this.deleteMovieRating}> Delete </button>
       </>
     )
@@ -75,10 +73,9 @@ class MovieRatingForm extends Component {
     return (
       <>
         <form onChange={this.changeHandler}>{this.formInputs()}
-          <button onClick={(event) => {
-            event.preventDefault();
+          <button onClick={() => {
             this.postMovieRating()
-          }}>Submit</button>
+          }} type="button">Submit Review</button>
         </form>
       </>
     )

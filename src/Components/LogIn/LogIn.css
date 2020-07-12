@@ -1,0 +1,27 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  background-color: #0F1700;
+  position: fixed;
+  padding: 5%;
+  padding-left: 12%;
+  padding-right: 12%;
+  border-radius: 15px;
+  margin-left: 32%;
+  margin-top: 10%;
+  box-shadow: 10px 5px 5px #050800;
+  color: #F3F3F3;
+  text-align: left;
+}
+
+.login-input {
+  margin-bottom: 6%;
+}
+
+.submit-button {
+  border-radius: 15px;
+  padding-left: 12%;
+  padding-right: 12%;
+  color: #F3F3F3;
+  background-color: #696F00;
+}

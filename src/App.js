@@ -48,8 +48,11 @@ class App extends Component {
       const { user } = await loginUser(userCredentials);
       this.setState({ user: user });
       localStorage.setItem('user', JSON.stringify(user))
+      this.setState({error: ""})
+      return this.state.user.name;
     } catch (error) {
-      this.setState({ error: error });
+      this.setState({ error: "Incorrect Email/Password" });
+      return this.state.error;
     }
   };
 
@@ -69,7 +72,12 @@ class App extends Component {
 
         <section className="header">
           <Link className="headerTitle" to="/">
-             <h1>Rancid Tomatillos</h1>
+            {!this.state.user.name ? (<h1>Rancid Tomatillos</h1>) : 
+              (<> 
+                <h1 className="title">Rancid Tomatillos</h1>
+                <h3>{`Welcome, ${this.state.user.name}!`}</h3>
+              </>)
+            }
           </Link>
           <nav className="navBar">
             {this.state.user.name ? (
@@ -95,7 +103,7 @@ class App extends Component {
             const movie2Render = this.state.movies.find(
               (movie) => movie.id === parseInt(id)
             );
-            return <MovieMainPage {...movie2Render} rootUrl={this.url} />;
+            return <MovieMainPage {...movie2Render} rootUrl={this.url} ratings={this.state.ratings} />;
           }}
         ></Route>
 

@@ -24,7 +24,7 @@ export const loginUser = async (userCredentials) => {
   if (response.ok) {
     return await response.json();
   } else {
-    throw new Error({ ...response });
+    throw new Error({...response});
   }
 }
 
