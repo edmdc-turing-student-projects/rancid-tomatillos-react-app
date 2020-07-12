@@ -110,8 +110,21 @@ describe("App when user is logged in", () => {
         <App user={ user } />
       </MemoryRouter>
     )
+
     const welcomeBanner = getByRole('heading', {name: 'Welcome Banner'})
 
     expect(welcomeBanner).toBeInTheDocument();
   });
+
+  it('should display a logout button', () => {
+    const {getByRole} = render(
+      <MemoryRouter>
+        <App user={ user } />
+      </MemoryRouter>
+    )
+
+    const logOutButton = getByRole('button', {name: "Log Out"});
+
+    expect(logOutButton).toBeInTheDocument();
+  })
 })
