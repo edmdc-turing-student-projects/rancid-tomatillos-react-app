@@ -35,4 +35,16 @@ describe("Movies without user logged in", () => {
     const moviePoster = getByRole('img', {name:`${movie1.title} movie poster`} )
     expect(moviePoster).toBeInTheDocument();
   })
+
+  it('should render all movie cards', () => {
+    const {getAllByRole} = render(
+      <MemoryRouter>
+        <Movies movies={[movie1, movie2]}/>
+      </MemoryRouter>
+    );
+
+    const moviePosters = getAllByRole('img')
+    expect(moviePosters.length).toEqual(2);
+    expect(moviePosters[1]).toBeInTheDocument();
+  })
 });
