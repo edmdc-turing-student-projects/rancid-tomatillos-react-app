@@ -7,8 +7,8 @@ const Movie = ({ posterPath, title, averageRating, releaseDate }) => {
   return (
     <article>
       <figure>
-        <div>
-          <img alt={`${title} movie poster`} src={posterPath} className="all-movies"/>
+        <div className="movieCard">
+          <img className="movieImg" alt={`${title} movie poster`} src={posterPath} />
         </div>
         <figcaption>
           <h4>{title}</h4>

@@ -64,7 +64,12 @@ class MovieRatingForm extends Component {
     return (
       <>
         <p><strong>Your Rating:</strong> {this.state.userRating.rating}</p>
-        <button onClick={this.deleteMovieRating}> Delete </button>
+        <button
+          onClick={this.deleteMovieRating}
+          title="delete rating"
+        >
+        Delete
+        </button>
       </>
     )
   }
@@ -72,10 +77,17 @@ class MovieRatingForm extends Component {
   movieRatingFormFragment = () => {
     return (
       <>
-        <form onChange={this.changeHandler}>{this.formInputs()}
-          <button onClick={() => {
-            this.postMovieRating()
-          }} type="button">Submit Review</button>
+        <form
+          title="submit a movie rating"
+          onChange={this.changeHandler}
+        >
+          {this.formInputs()}
+          <button
+            onClick={() => this.postMovieRating()}
+            type="button"
+          >
+            Submit Review
+          </button>
         </form>
       </>
     )

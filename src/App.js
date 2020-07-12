@@ -72,10 +72,10 @@ class App extends Component {
 
         <section className="header">
           <Link className="headerTitle" to="/">
-            {!this.state.user.name ? (<h1>Rancid Tomatillos</h1>) : 
-              (<> 
+            {!this.state.user.name ? (<h1>Rancid Tomatillos</h1>) :
+              (<>
                 <h1 className="title">Rancid Tomatillos</h1>
-                <h3>{`Welcome, ${this.state.user.name}!`}</h3>
+                <h3 aria-label="Welcome Banner">{`Welcome, ${this.state.user.name}!`}</h3>
               </>)
             }
           </Link>

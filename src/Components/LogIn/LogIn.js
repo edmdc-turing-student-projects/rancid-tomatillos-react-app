@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import "./LogIn.css";
 
@@ -12,7 +12,7 @@ class LogIn extends Component {
       password: "",
       error: "",
       redirect: false,
-    };     
+    };
   }
 
   updateLoginFields(event) {
@@ -21,8 +21,8 @@ class LogIn extends Component {
   }
 
   loginUser = async () => {
-    const userInfo = await this.props.postUser(this.state) 
-    
+    const userInfo = await this.props.postUser(this.state)
+
     if(userInfo !== 'Incorrect Email/Password') {
       this.setState({redirect: true})
     } else {
@@ -36,7 +36,7 @@ class LogIn extends Component {
       return <Redirect to="/"/>
     }
     return (
-      <form className="login-form">
+      <form className="login-form" title="Login Form">
         <label htmlFor="email">Email:</label>
         <input
           className="login-input"
@@ -50,7 +50,7 @@ class LogIn extends Component {
         <input
           className="login-input"
           name="password"
-          type="text"
+          type="password"
           placeholder="password"
           value={this.state.password}
           onChange={(event) => this.updateLoginFields(event)}

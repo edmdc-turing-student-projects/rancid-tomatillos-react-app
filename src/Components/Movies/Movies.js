@@ -7,7 +7,7 @@ import { findMovieRating } from "../../utils";
 const Movies = ({ movies, ratings, userId }) => {
   const movieResults = movies.map((movie, index) => {
     return (
-      <li id={movie.id} key={index}>
+      <li id={movie.id} key={index} title={movie.title}>
         <Link to={`/movies/${movie.id}`}>
           <Movie
             title={movie.title}
