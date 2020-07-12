@@ -48,3 +48,43 @@ describe("Movies without user logged in", () => {
     expect(moviePosters[1]).toBeInTheDocument();
   })
 });
+
+describe("Movies when user is logged in", () => {
+  const user = {
+    email: "greg@turing.io",
+    id: 58,
+    name: "Greg"
+  }
+
+  const ratings = [
+    {
+      id: 1261,
+      movie_id: 338762,
+      rating: 6,
+      user_id: 58
+    }
+  ]
+
+  it("should display a form for user to submit rating", () => {
+    const {getByRole} = render(
+      <MemoryRouter>
+        <Movies movies={[movie1]} ratings={ratings} userId={user.id}/>
+      </MemoryRouter>
+    );
+
+    const submitRatingBtn = getByRole('button', {name: "Submit Review"})
+    expect(submitRatingBtn).toBeInTheDocument();
+  })
+
+  it("should give the option to delete a rating", () => {
+    const {getByRole} = render(
+      <MemoryRouter>
+        <Movies movies={[movie1, movie2]} ratings={ratings} userId={user.id}/>
+      </MemoryRouter>
+    );
+
+    const deleteRatingBtn = getByRole('button', {name: "delete rating"})
+    expect(deleteRatingBtn).toBeInTheDocument();
+  })
+
+});
