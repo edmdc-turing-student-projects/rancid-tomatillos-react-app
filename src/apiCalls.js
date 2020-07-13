@@ -83,7 +83,7 @@ export const deleteRating = async (userId, ratingId) => {
   return await response.json()
 };
 
-export const getComments = async() => {
+export const getComments = async () => {
   const commentsURL = `http://localhost:3001/api/v1/movies/comments`
   const response = await fetch(commentsURL);
 
@@ -92,4 +92,4 @@ export const getComments = async() => {
   } else {
     throw new Error({ ...response });
   }
-}
+};
