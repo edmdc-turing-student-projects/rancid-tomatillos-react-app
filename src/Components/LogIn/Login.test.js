@@ -7,7 +7,7 @@ import { createMemoryHistory } from 'history'
 jest.mock('../../apiCalls');
 import { loginUser } from '../../apiCalls';
 
-describe.only("Login", () => {
+describe("Login", () => {
   it("should allow a user to login", () => {
     const { getByRole, getByPlaceholderText } = render(
       <MemoryRouter>
@@ -79,7 +79,7 @@ describe.only("Login", () => {
     expect(history.location.pathname).toBe("/");
   })
 
-  it.skip("should take user back to homepage once they login", async () => {
+  it("should take user back to homepage once they login", async () => {
     const mockUserLogin = jest.fn();
     loginUser.mockResolvedValue({
       email: "greg@turing.io", 
