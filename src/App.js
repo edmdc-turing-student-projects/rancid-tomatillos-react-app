@@ -4,7 +4,7 @@ import Movies from "./Components/Movies/Movies";
 import LogIn from "./Components/LogIn/LogIn";
 import { Route, Link, Redirect } from "react-router-dom";
 import MovieMainPage from "./Components/MovieMainPage/MovieMainPage";
-import { getAllMovies, loginUser, movieRatingsRequests } from "./apiCalls";
+import { getAllMovies, loginUser, movieRatingsRequests, getComments } from "./apiCalls";
 
 class App extends Component {
   constructor({user = {}}) {
@@ -27,6 +27,16 @@ class App extends Component {
       }
     };
 
+    const getMovieComments = async () => {
+      try {
+        const commentDetails = await getComments();
+        this.setState({...commentDetails});
+      } catch(error) {
+        this.setState({ error: error });
+      }
+    };
+
+    getMovieComments();
     getMoviesRequest();
 
     if (this.state.user.id) {
@@ -39,24 +49,10 @@ class App extends Component {
           this.setState({ error: error });
         }
       }
-      return getUserMovieRatings();
+       return getUserMovieRatings();
+      }
     }
-  }
-
-  // componentDidUpdate() {
-  //  if (this.state.user.id) {
-  //     const getUserMovieRatings = async () => {
-  //       try {
-  //         const ratings = await movieRatingsRequests(this.state.user.id)
-  //         console.log(ratings)
-  //         this.setState({...ratings})
-  //       } catch (error) {
-  //         this.setState({ error: error });
-  //       }
-  //     }
-  //     return getUserMovieRatings();
-  //   }
-  // }
+  
 
   postUser = async (userCredentials) => {
     try {
@@ -74,9 +70,7 @@ class App extends Component {
   logOutUser = (event) => {
     event.preventDefault();
     if (event.target.innerHTML === "Log Out") {
-      this.setState({
-        user: {},
-      });
+      this.setState({ user: {} });
       localStorage.clear();
     }
   };
@@ -118,7 +112,7 @@ class App extends Component {
             const movie2Render = this.state.movies.find(
               (movie) => movie.id === parseInt(id)
             );
-            return <MovieMainPage {...movie2Render} rootUrl={this.url} ratings={this.state.ratings} />;
+            return <MovieMainPage {...movie2Render} rootUrl={this.url} ratings={this.state.ratings} comments={this.state.comments}/>;
           }}
         ></Route>
 
