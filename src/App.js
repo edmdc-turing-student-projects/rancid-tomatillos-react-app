@@ -113,7 +113,7 @@ class App extends Component {
             const movie2Render = this.state.movies.find(
               (movie) => movie.id === parseInt(id)
             );
-            return <MovieMainPage {...movie2Render} rootUrl={this.url} ratings={this.state.ratings} comments={this.state.comments}/>;
+            return <MovieMainPage {...movie2Render} rootUrl={this.url} ratings={this.state.ratings} comments={this.state.comments} userId={this.state.user.id}/>;
           }}
         ></Route>
 

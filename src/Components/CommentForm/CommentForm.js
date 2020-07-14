@@ -40,7 +40,6 @@ class CommentForm extends Component {
             name="author"
             type="text"
             placeholder="name"
-            // value={this.state.au}
             onChange={(event) => this.updateCommentFields(event)}
           />
         <label htmlFor="comment">Comment:</label>
