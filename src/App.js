@@ -4,7 +4,11 @@ import Movies from "./Components/Movies/Movies";
 import LogIn from "./Components/LogIn/LogIn";
 import { Route, Link, Redirect } from "react-router-dom";
 import MovieMainPage from "./Components/MovieMainPage/MovieMainPage";
-import { getAllMovies, loginUser, movieRatingsRequests, getComments } from "./apiCalls";
+import { getAllMovies,
+        loginUser,
+        movieRatingsRequests,
+        getComments,
+        getAllFavorites } from "./apiCalls";
 
 class App extends Component {
   constructor({user = {}}) {
@@ -20,8 +24,13 @@ class App extends Component {
   componentDidMount() {
     const getMoviesRequest = async () => {
       try {
-        let movies = await getAllMovies();
-        this.setState({ movies: movies.movies, error: "" });
+
+        const { movies } = await getAllMovies();
+        const formatedMovieData = movies.map(movie => {
+          return {...movie, isFavorite: false}
+        })
+        this.setState({movies: formatedMovieData});
+
       } catch (error) {
         this.setState({ error: error });
       }
@@ -49,10 +58,26 @@ class App extends Component {
           this.setState({ error: error });
         }
       }
-       return getUserMovieRatings();
+
+      const getUserFavorites = async () => {
+        try {
+          const favorites = await getAllFavorites()
+
+          // un mapa sobre favoritos para encontrar
+          // la pelicula necesaria y agregar un status de
+          // favorito, tendre que agregar esta propriedad a todas las peliculas?
+          // const findMovies = this.state.movies.filter
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      getUserMovieRatings();
+      getUserFavorites();
+
       }
     }
-  
+
 
   postUser = async (userCredentials) => {
     try {
