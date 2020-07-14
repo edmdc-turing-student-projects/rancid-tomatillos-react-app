@@ -1,6 +1,7 @@
 import React from "react";
 import Movie from "../Movie/Movie.js";
 import "./Movies.css";
+import emptyStar from "../../../public/empty_start.png"
 import { Link } from "react-router-dom";
 import { findMovieRating } from "../../utils";
 

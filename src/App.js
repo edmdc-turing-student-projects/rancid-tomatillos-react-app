@@ -24,7 +24,6 @@ class App extends Component {
   componentDidMount() {
     const getMoviesRequest = async () => {
       try {
-
         const { movies } = await getAllMovies();
 
         if (this.state.user.id) {
