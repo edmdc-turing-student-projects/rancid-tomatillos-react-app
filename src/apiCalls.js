@@ -93,3 +93,14 @@ export const getComments = async () => {
     throw new Error({ ...response });
   }
 };
+
+export const getAllFavorites = async() => {
+  const favoritesURL = `http://localhost:3001/api/v1/movies/favorites`
+  const response = await fetch(favoritesURL);
+
+  if (response.ok) {
+    return await response.json()
+  } else {
+    throw new Error({...response});
+  }
+};
