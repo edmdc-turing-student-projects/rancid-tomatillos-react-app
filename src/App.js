@@ -4,7 +4,7 @@ import Movies from "./Components/Movies/Movies";
 import LogIn from "./Components/LogIn/LogIn";
 import { Route, Link, Redirect } from "react-router-dom";
 import MovieMainPage from "./Components/MovieMainPage/MovieMainPage";
-import { getAllMovies, loginUser, movieRatingsRequests } from "./apiCalls";
+import { getAllMovies, loginUser, movieRatingsRequests, getComments } from "./apiCalls";
 
 class App extends Component {
   constructor({user = {}}) {
@@ -26,7 +26,17 @@ class App extends Component {
         this.setState({ error: error });
       }
     };
-    return getMoviesRequest();
+
+    const getMovieComments = async () => {
+      try {
+        const commentDetails = await getComments();
+        this.setState({...commentDetails});            
+      } catch(error) {
+        this.setState({ error: error });
+      }      
+    };
+    getMovieComments();
+    getMoviesRequest();
   }
 
   componentDidUpdate() {
@@ -103,7 +113,7 @@ class App extends Component {
             const movie2Render = this.state.movies.find(
               (movie) => movie.id === parseInt(id)
             );
-            return <MovieMainPage {...movie2Render} rootUrl={this.url} ratings={this.state.ratings} />;
+            return <MovieMainPage {...movie2Render} rootUrl={this.url} ratings={this.state.ratings} comments={this.state.comments}/>;
           }}
         ></Route>
 
