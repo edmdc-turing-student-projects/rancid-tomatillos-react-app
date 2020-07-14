@@ -60,7 +60,7 @@ class MovieMainPage extends Component {
               </section>
             </figure>
             <section>
-              {<CommentForm movieId={this.state.movie.id}/>}
+              {<CommentForm movieId={this.state.movie.id} comments={this.props.comments}/>}
             </section>
             <p>{this.findComments()}</p>
           </section>

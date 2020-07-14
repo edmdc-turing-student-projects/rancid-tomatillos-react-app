@@ -3,12 +3,13 @@ import { addComment } from "../../apiCalls";
 import "./CommentForm.css";
 
 class CommentForm extends Component {
-  constructor({movieId}) {
+  constructor({movieId, comments}) {
     super();
     this.state = {
       author: "",
       comment: "",
       movie_id: movieId,
+      comments: comments,
       error: ""
     }
   }
@@ -20,7 +21,8 @@ class CommentForm extends Component {
       movie_id: this.state.movie_id
     }
     try {
-      await addComment(commentInfo);
+      const response = await addComment(commentInfo);
+      this.state.comments.push(response);
     } catch(error) {
       this.setState({error: error})
     }
