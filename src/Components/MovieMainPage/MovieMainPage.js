@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./MovieMainPage.css";
-import Comments from "../Comments/Comments.js";
+import CommentForm from "../CommentForm/CommentForm.js";
 import { getSingleMovieInfo } from "../../apiCalls";
 import { formatDate, findMovieRating } from "../../utils";
 
@@ -21,15 +21,19 @@ class MovieMainPage extends Component {
   findComments() {
     const comments = this.props.comments.filter(comment => comment.movie_id === this.state.movie.id)
     
-    const commentResults = comments.map(comment => {
-      return <Comments author={comment.author} comment={comment.comment}/>
+    return comments.map(comment => {
+      return ( 
+        <article>
+          <p>{comment.author}</p>
+          <p>{comment.comment}</p>
+        </article>
+      );
     })
-    
-    return (
-      <section>
-        <ul>{commentResults.length && commentResults}</ul>
-      </section>
-    );  }
+  }
+
+  // displayNewComment() {
+
+  // }
 
   render() {  
     return (
@@ -55,6 +59,9 @@ class MovieMainPage extends Component {
                 {(this.props.ratings) ? findMovieRating(this.props.ratings, this.state.movie,this.props.ratings[0].user_id) : null}
               </section>
             </figure>
+            <section>
+              {<CommentForm movieId={this.state.movie.id}/>}
+            </section>
             <p>{this.findComments()}</p>
           </section>
         )}
