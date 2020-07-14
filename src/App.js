@@ -26,14 +26,14 @@ class App extends Component {
         this.setState({ error: error });
       }
     };
-    return getMoviesRequest();
-  }
 
-  componentDidUpdate() {
-   if (this.state.user.id) {
+    getMoviesRequest();
+
+    if (this.state.user.id) {
       const getUserMovieRatings = async () => {
         try {
           const ratings = await movieRatingsRequests(this.state.user.id)
+          console.log(ratings)
           this.setState({...ratings})
         } catch (error) {
           this.setState({ error: error });
@@ -42,6 +42,21 @@ class App extends Component {
       return getUserMovieRatings();
     }
   }
+
+  // componentDidUpdate() {
+  //  if (this.state.user.id) {
+  //     const getUserMovieRatings = async () => {
+  //       try {
+  //         const ratings = await movieRatingsRequests(this.state.user.id)
+  //         console.log(ratings)
+  //         this.setState({...ratings})
+  //       } catch (error) {
+  //         this.setState({ error: error });
+  //       }
+  //     }
+  //     return getUserMovieRatings();
+  //   }
+  // }
 
   postUser = async (userCredentials) => {
     try {

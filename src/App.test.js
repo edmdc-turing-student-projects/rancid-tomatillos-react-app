@@ -32,7 +32,7 @@ describe("App", () => {
     expect(linkElement).toBeInTheDocument();
   });
 
-  it("should render a movie", async () => {
+  it("should render a movie from a fetch call", async () => {
     const { findByRole } = render(
       <MemoryRouter>
         <App />
