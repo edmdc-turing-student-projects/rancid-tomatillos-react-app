@@ -26,10 +26,17 @@ class App extends Component {
       try {
 
         const { movies } = await getAllMovies();
-        const formatedMovieData = movies.map(movie => {
-          return {...movie, isFavorite: false}
-        })
-        this.setState({movies: formatedMovieData});
+
+        if (this.state.user.id) {
+          const {favorites} = await getAllFavorites()
+          const formatedMovieData = movies.map(movie => {
+            return (favorites.find(favorite => favorite.movieId === movie.id)) ?
+              ({...movie, isFavorite: true}) : ({...movie, isFavorite: false})
+          })
+          this.setState({movies: formatedMovieData});
+        } else {
+          this.setState({movies})
+        }
 
       } catch (error) {
         this.setState({ error: error });
@@ -59,21 +66,7 @@ class App extends Component {
         }
       }
 
-      const getUserFavorites = async () => {
-        try {
-          const favorites = await getAllFavorites()
-
-          // un mapa sobre favoritos para encontrar
-          // la pelicula necesaria y agregar un status de
-          // favorito, tendre que agregar esta propriedad a todas las peliculas?
-          // const findMovies = this.state.movies.filter
-        } catch (error) {
-          console.error(error);
-        }
-      };
-
-      getUserMovieRatings();
-      getUserFavorites();
+    getUserMovieRatings();
 
       }
     }
