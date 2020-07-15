@@ -38,6 +38,7 @@ margin-left: 9%;
   align-self: center;
   color: #F3F3F3;
   background-color: #696F00;
+  border-radius: 5px;
 }
 
 .movie-info p {
