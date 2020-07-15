@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { addComment } from "../../apiCalls";
 import "./CommentForm.css";
 import { findComments } from "../../utils";
@@ -15,7 +16,7 @@ class CommentForm extends Component {
       error: ""
     }
   }
-  
+
   postComment = async () => {
     const commentInfo = {
       author: this.state.author,
@@ -70,3 +71,12 @@ class CommentForm extends Component {
 } 
 
 export default CommentForm;
+
+CommentForm.propTypes = {
+  author: PropTypes.string,
+  comment: PropTypes.string,
+  error: PropTypes.string,
+  movie_id: PropTypes.number,
+  comments: PropTypes.array,
+  findComments: PropTypes.func,
+};

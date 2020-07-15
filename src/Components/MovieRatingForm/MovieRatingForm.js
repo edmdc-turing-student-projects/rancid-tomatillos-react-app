@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./MovieRatingForm.css";
 import { addRating, deleteRating } from "../../apiCalls";
 
@@ -54,6 +55,7 @@ class MovieRatingForm extends Component {
     try {
       const response = await deleteRating(this.state.userId, this.state.userRating.id)
       this.setState({userRating: null});
+      this.setState({rating: null})
       console.log(response)
     } catch (error) {
       this.setState({error: error});
@@ -101,3 +103,19 @@ class MovieRatingForm extends Component {
 }
 
 export default MovieRatingForm;
+
+MovieRatingForm.propTypes = {
+  movieId: PropTypes.number,
+  userRating: PropTypes.object,
+  rating: PropTypes.string,
+  userId: PropTypes.number,
+  error: PropTypes.string,
+  movieId: PropTypes.number,
+  addRating: PropTypes.func,
+  deleteRating: PropTypes.func,
+};
+
+
+MovieRatingForm.defaultProps = {
+  rating: null,
+}

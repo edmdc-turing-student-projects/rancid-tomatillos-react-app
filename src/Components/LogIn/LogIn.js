@@ -67,6 +67,7 @@ LogIn.propTypes = {
   password: PropTypes.string,
   error: PropTypes.string,
   postUser: PropTypes.func,
+  redirect: PropTypes.bool,
 };
 
 LogIn.defaultProps = {
