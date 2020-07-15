@@ -1,9 +1,9 @@
 import React from "react";
 import Login from "./Login";
-import { render, fireEvent, waitFor } from "@testing-library/react";
+import { render, fireEvent, waitFor, getByText } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Router, MemoryRouter } from "react-router-dom";
-import { createMemoryHistory } from 'history'
+import { createMemoryHistory } from "history";
 
 describe("Login", () => {
   it("should allow a user to login", () => {
@@ -41,7 +41,12 @@ describe("Login", () => {
     const button = getByRole("button", { name: "Submit" });
     fireEvent.click(button);
 
-    expect(mockUserLogin).toBeCalledWith({"email": "bob@bob.bob", "error": "", "password": "iambob", "redirect": false});
+    expect(mockUserLogin).toBeCalledWith({
+      email: "bob@bob.bob",
+      error: "",
+      password: "iambob",
+      redirect: false,
+    });
   });
 
   it("should allow a user to input their credentials", () => {
@@ -63,15 +68,15 @@ describe("Login", () => {
     expect(password.value).toEqual(userTestPassword);
   });
 
-  it("should show url going back to home on login", async () => {
-    const history = createMemoryHistory()
+  it("should show url going back to home on login", () => {
+    const history = createMemoryHistory();
     const mockUserLogin = jest.fn();
-    const {getByRole, getByPlaceholderText, getByText } = render(
+    const { getByRole, getByPlaceholderText } = render(
       <Router history={history}>
-        <Login postUser={mockUserLogin}/>
+        <Login postUser={mockUserLogin} />
       </Router>
     );
-    
+
     const userTestEmail = "greg@turing.io";
     const userTestPassword = "abc123";
 
@@ -83,5 +88,25 @@ describe("Login", () => {
     fireEvent.click(button);
 
     expect(history.location.pathname).toBe("/");
-  })
+  });
+
+  it.skip("should show alert when a user logs in with incorrect info", () => {
+    const history = createMemoryHistory();
+    const mockUserLogin = jest.fn();
+    const { getByRole, getByPlaceholderText, getByText } = render(
+      <Router history={history}>
+        <Login postUser={mockUserLogin} />
+      </Router>
+    );
+
+    const userTestEmail = "bob@turing.io";
+    const userTestPassword = "abc123";
+
+    const email = getByPlaceholderText("email");
+    const password = getByPlaceholderText("password");
+    const button = getByRole("button", { name: "Submit" });
+    fireEvent.change(email, { target: { value: userTestEmail } });
+    fireEvent.change(password, { target: { value: userTestPassword } });
+    fireEvent.click(button);
+  });
 });

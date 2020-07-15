@@ -1,42 +1,45 @@
 #single-movie {
-  height: 85vh;
-  width: 100%;
+  height: 80vh;
+  width: 90%;
+  background-color: blanchedalmond;
+  margin-left: 5%;
+  /* overflow: scroll; */
 }
 
 .movie-image {
-  height:70vh;
+  height: 30vh;
   width: 35vw;
-  top: 22.8vh; 
-  left: 2.8vw;
   margin-right: 3%;
-  border-radius: 15px;
+  margin-top: 3%;
+  margin-left: -7%;
 }
 
 #figure-container {
 display: flex;
-border-radius: 15px;
 margin-left: 9%;
 }
 
 .movie-info {
-  background-color: blanchedalmond;
-  height:70vh;
+  height:80vh;
   color: black;
   display: flex;
   flex-direction: column;
   text-align: left;
   padding-left: 3%;
-  padding-right: 3%;
-  border-radius: 15px;
+  margin-right: -6%;
+  padding-top: 1%;
   overflow: scroll;
 }
 
-.movie-info button {
-  border-radius: 15px;
+.other-info button {
   width: fit-content;
+  height: fit-content;
+  align-self: center;
+  color: #F3F3F3;
+  background-color: #696F00;
 }
 
-p {
+.movie-info p {
   margin-top: 1%;
   margin-bottom: 1%
 }
@@ -44,4 +47,48 @@ p {
 .tagline {
   margin-top: -2%;
   margin-bottom: 1%;
+}
+
+.other-info {
+  display: flex;
+  flex-direction: column;
+  width: 41%;
+  text-align: left;
+  margin-top: -28%;
+  margin-left: 3%;
+  overflow: auto;
+  height: 300px;
+}
+
+.userReview {
+  display: flex;
+  color: blue;
+}
+
+.userReview form {
+  display: flex;
+  width: 100%;
+}
+
+.userReview button {
+  margin-left: 3%;
+}
+
+.comments {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  padding-left: 5%;
+  margin-top: 1%;
+  width: 94.5%;
+  background-color: #FFF5E6;
+}
+
+.author {
+  border: 1px solid black;
+  margin: 0;
+  display: flex;
+  align-self: flex-end;
+  padding: 1%;
+  font-size: 12px;
 }

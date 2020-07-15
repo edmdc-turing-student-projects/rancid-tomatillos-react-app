@@ -141,3 +141,20 @@ export const toggleFavorites = (movieId, userId) => {
     }
   }
 };
+
+export const addComment = async (commentInfo) => {
+  const commentsURL = `http://localhost:3001/api/v1/movies/comments`
+  const submitComment = {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(commentInfo),
+  }
+
+  const response = await fetch(commentsURL, submitComment);
+
+  if (response.ok) {
+    return await response.json();
+  } else {
+    throw new Error({ ...response });
+  }
+}
