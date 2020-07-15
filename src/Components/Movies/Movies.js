@@ -1,14 +1,32 @@
 import React from "react";
 import Movie from "../Movie/Movie.js";
 import "./Movies.css";
-import emptyStar from "../../../public/empty_start.png"
+import emptyStar from "../../empty_start.png"
 import { Link } from "react-router-dom";
 import { findMovieRating } from "../../utils";
 
-const Movies = ({ movies, ratings, userId }) => {
+const Movies = ({ movies, ratings, userId, toggleFavorite }) => {
+  const favoriteStatus = (movie) => {
+    return movie.isFavorite ? (
+      <button
+        className="starIcon active"
+        onClick={(event) => toggleFavorite(event)}
+      >
+        <img src={emptyStar} alt="favorited movie"/>
+      </button>
+    ) : (
+      <button
+        className="starIcon"
+        onClick={(event) => toggleFavorite(event)}
+      >
+        <img src={emptyStar} alt="not a favorited movie"/>
+      </button>
+    )
+  }
   const movieResults = movies.map((movie, index) => {
     return (
       <li id={movie.id} key={index} title={movie.title}>
+        {userId ? favoriteStatus(movie) : null}
         <Link to={`/movies/${movie.id}`}>
           <Movie
             title={movie.title}

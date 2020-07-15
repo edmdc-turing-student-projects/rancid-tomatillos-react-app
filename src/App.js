@@ -92,6 +92,12 @@ class App extends Component {
     }
   };
 
+  toggleFavoriteFlick = (event) => {
+    const movieId = parseInt(event.target.closest('li').id)
+    const selectedFlick = this.state.movies.find(movie => movie.id === movieId)
+    return (selectedFlick.isFavorite) ? console.log("I'm a favorite") : console.log("I'm not")
+  }
+
   render() {
     return (
       <main className="App">
@@ -140,7 +146,12 @@ class App extends Component {
         <Route
           exact
           path='/user/:id'>
-          <Movies movies={this.state.movies} ratings={this.state.ratings} userId={this.state.user.id} />
+          <Movies
+            movies={this.state.movies}
+            ratings={this.state.ratings}
+            userId={this.state.user.id}
+            toggleFavorite={this.toggleFavoriteFlick}
+          />
           {!this.state.user.name && <Redirect to="/" />}
         </Route>
 

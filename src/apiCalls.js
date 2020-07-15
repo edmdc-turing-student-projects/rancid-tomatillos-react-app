@@ -104,3 +104,39 @@ export const getAllFavorites = async() => {
     throw new Error({...response});
   }
 };
+
+export const toggleFavorites = (movieId, userId) => {
+  const favoritesURL = `http://localhost:3001/api/v1/movies/favorites`
+  const mainRequestBody = {
+    headers: {"Content-type": "application/json"},
+    body: JSON.stringify({movieId, userId})
+  }
+
+  return {
+    add2Favorites: async () => {
+      const response = await fetch(favoritesURL, {
+        method: "POST",
+        ...mainRequestBody
+      })
+
+      if (response.ok) {
+        return await response.json()
+      } else {
+        throw new Error({...response})
+      }
+    },
+
+    unfavoriteMovie: async () => {
+      const response = await fetch(favoritesURL, {
+        method: "PATCH",
+        ...mainRequestBody
+      })
+
+      if (response.ok) {
+        return await response.json()
+      } else {
+        throw new Error({...response})
+      }
+    }
+  }
+};

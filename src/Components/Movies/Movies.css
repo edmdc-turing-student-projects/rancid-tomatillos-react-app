@@ -30,4 +30,18 @@ a:visited {
   /* text-decoration: none; */
 }
 
+.starIcon {
+  border: 0px;
+  margin-left: 80%;
+  background-color: blanchedalmond;
+}
+
+img {
+  width: 25px;
+  height: 25px;
+}
+
+.active {
+  background-color: black;
+}
 /* @media (max-widt */
