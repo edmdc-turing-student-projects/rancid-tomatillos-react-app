@@ -2,9 +2,10 @@
 // window.MutationObserver = MutationObserver
 import React from "react";
 import MovieMainPage from "./MovieMainPage";
-import { render, waitFor, getByTitle } from "@testing-library/react";
+import { render, waitFor, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { getSingleMovieInfo, getComments, movieRatingsRequests } from "../../apiCalls"
+import { MemoryRouter } from "react-router-dom";
 jest.mock("../../apiCalls")
 
 
@@ -174,20 +175,24 @@ describe('MovieMainPage', () => {
       expect(commentAuthor).toBeInTheDocument();
   })
 
-  it.skip('a user\'s new comment should show up on submit', async () => {
-      const { getByRole, getByPlaceholderText } = render(
+  it.only('a user\'s new comment should show up on submit', async () => {
+      const { getByRole, getByPlaceholderText, getByText } = render(
+      <MemoryRouter>
         <MovieMainPage {...movie2Render} 
-       rootUrl="https://rancid-tomatillos.herokuapp.com/api/v2/movies/475430"
-       ratings={ratings2Render}
-       comments={comments2Render}
-      />);
+          rootUrl="https://rancid-tomatillos.herokuapp.com/api/v2/movies/475430"
+          ratings={ratings2Render}
+          comments={comments2Render}
+          userId={58}
+        />
+      </MemoryRouter>
+      );
     
       const authorSample = "Greg";
       const commentSample = "good movie";
   
-      const author = getByPlaceholderText("name");
-      const comment =  getByPlaceholderText("comment");
-      const commentButton = getByRole("button", { name: "Submit" });
+      const author = await waitFor(() => getByPlaceholderText("name"));
+      const comment =  await waitFor(() => getByPlaceholderText("comment"));
+      const commentButton = await waitFor(() => getByRole("button", { name: "Submit" }));
 
       fireEvent.change(author, { target: { value: authorSample } });
       fireEvent.change(comment, { target: { value: commentSample } });
