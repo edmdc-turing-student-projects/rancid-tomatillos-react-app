@@ -34,4 +34,29 @@ describe("CommentForm", () => {
     expect(author.value).toEqual(authorSample);
     expect(comment.value).toEqual(commentSample);
   })
+
+  it("a user's new comment should show up on submit", async () => {
+    const { getByRole, getByPlaceholderText, getByText } = render(
+      <CommentForm movieId={603} comments={[]}/>
+    );
+
+    const authorSample = "Greg";
+    const commentSample = "good movie";
+
+    const author = await waitFor(() => getByPlaceholderText("name"));
+    const comment = await waitFor(() => getByPlaceholderText("comment"));
+    const commentButton = await waitFor(() =>
+      getByRole("button", { name: "Submit" })
+    );
+
+    fireEvent.change(author, { target: { value: authorSample } });
+    fireEvent.change(comment, { target: { value: commentSample } });
+    fireEvent.click(commentButton);
+
+    const authorInfo = await waitFor( () =>  getByText("Greg"));
+    const commentInfo = await waitFor(() => getByText("good movie"));
+
+    expect(authorInfo).toBeInTheDocument();
+    expect(commentInfo).toBeInTheDocument();         
+  })
 })
