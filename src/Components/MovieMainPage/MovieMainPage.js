@@ -38,7 +38,7 @@ class MovieMainPage extends Component {
                 <p><strong>Budget:</strong> <br></br> ${(this.state.movie.budget).toLocaleString('en')}</p>
                 <p><strong>Revenue:</strong> <br></br> ${(this.state.movie.revenue).toLocaleString('en')}</p>
                 <p><strong>Runtime:</strong> <br></br> {this.state.movie.runtime} Minutes</p>
-                <p><strong>Average Rating:</strong> <br></br> {Math.round(this.state.movie.average_rating)}</p>
+                <p><strong>Average Rating:</strong> <br></br> {Math.round(this.state.movie.average_rating)} / 10</p>
               </section>
             </figure>
             <section className="other-info">
