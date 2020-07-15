@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./MovieMainPage.css";
-import Comments from "../Comments/Comments.js";
+import CommentForm from "../CommentForm/CommentForm.js";
 import { getSingleMovieInfo } from "../../apiCalls";
 import { formatDate, findMovieRating } from "../../utils";
 
@@ -21,15 +21,15 @@ class MovieMainPage extends Component {
   findComments() {
     const comments = this.props.comments.filter(comment => comment.movie_id === this.state.movie.id)
     
-    const commentResults = comments.map(comment => {
-      return <Comments author={comment.author} comment={comment.comment}/>
+    return comments.map(comment => {
+      return ( 
+        <section className="comments">
+          <p>{comment.comment}</p>
+          <p className="author">User: <i>{comment.author}</i></p>
+        </section>
+      );
     })
-    
-    return (
-      <section>
-        <ul>{commentResults.length && commentResults}</ul>
-      </section>
-    );  }
+  }
 
   render() {  
     return (
@@ -52,10 +52,15 @@ class MovieMainPage extends Component {
                 <p><strong>Revenue:</strong> <br></br> ${(this.state.movie.revenue).toLocaleString('en')}</p>
                 <p><strong>Runtime:</strong> <br></br> {this.state.movie.runtime} Minutes</p>
                 <p><strong>Average Rating:</strong> <br></br> {Math.round(this.state.movie.average_rating)}</p>
-                {(this.props.ratings) ? findMovieRating(this.props.ratings, this.state.movie,this.props.ratings[0].user_id) : null}
               </section>
             </figure>
-            <p>{this.findComments()}</p>
+            <section className="other-info">
+              <section className="userReview">
+              {(this.props.ratings) ? findMovieRating(this.props.ratings, this. state.movie,this.props.userId) : null}
+              </section>
+              {this.props.userId && <CommentForm movieId={this.state.movie.id} comments={this.props.comments}/>}
+              {this.findComments()}
+            </section>
           </section>
         )}
       </section>
