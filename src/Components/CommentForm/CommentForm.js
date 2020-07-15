@@ -22,7 +22,7 @@ class CommentForm extends Component {
     }
     try {
       const response = await addComment(commentInfo);
-      this.state.comments.push(response);
+      this.setState({comments: [...this.state.comments, response]})
     } catch(error) {
       this.setState({error: error})
     }
