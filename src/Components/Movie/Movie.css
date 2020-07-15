@@ -15,4 +15,5 @@ div > img {
   padding-left: 10%;
   width: 90%;
   height: 95%;
+  border-radius: 15px;
 }

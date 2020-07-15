@@ -94,6 +94,54 @@ export const getComments = async () => {
   }
 };
 
+export const getAllFavorites = async() => {
+  const favoritesURL = `http://localhost:3001/api/v1/movies/favorites`
+  const response = await fetch(favoritesURL);
+
+  if (response.ok) {
+    return await response.json()
+  } else {
+    throw new Error({...response});
+  }
+};
+
+export const toggleFavorites = (movieId, userId) => {
+  const favoritesURL = `http://localhost:3001/api/v1/movies/favorites`
+  const mainRequestBody = {
+    headers: {"Content-type": "application/json"},
+    body: JSON.stringify({movieId, userId})
+  }
+
+  return {
+    add2FavoriteMovie: async () => {
+      const response = await fetch(favoritesURL, {
+        method: "POST",
+        ...mainRequestBody
+      })
+
+      if (response.ok) {
+        return await response.json()
+      } else {
+        console.log(response, "in ApiCalls")
+        throw new Error({...response})
+      }
+    },
+
+    unfavoriteMovie: async () => {
+      const response = await fetch(favoritesURL, {
+        method: "PATCH",
+        ...mainRequestBody
+      })
+
+      if (response.ok) {
+        return await response.json()
+      } else {
+        throw new Error({...response})
+      }
+    }
+  }
+};
+
 export const addComment = async (commentInfo) => {
   const commentsURL = `http://localhost:3001/api/v1/movies/comments`
   const submitComment = {

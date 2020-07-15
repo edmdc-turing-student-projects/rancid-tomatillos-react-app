@@ -4,7 +4,12 @@ import Movies from "./Components/Movies/Movies";
 import LogIn from "./Components/LogIn/LogIn";
 import { Route, Link, Redirect } from "react-router-dom";
 import MovieMainPage from "./Components/MovieMainPage/MovieMainPage";
-import { getAllMovies, loginUser, movieRatingsRequests, getComments } from "./apiCalls";
+import { getAllMovies,
+        loginUser,
+        movieRatingsRequests,
+        getComments,
+        getAllFavorites,
+        toggleFavorites} from "./apiCalls";
 
 class App extends Component {
   constructor({user = {}}) {
@@ -20,8 +25,19 @@ class App extends Component {
   componentDidMount() {
     const getMoviesRequest = async () => {
       try {
-        let movies = await getAllMovies();
-        this.setState({ movies: movies.movies, error: "" });
+        const { movies } = await getAllMovies();
+
+        if (this.state.user.id) {
+          const {favorites} = await getAllFavorites()
+          const formatedMovieData = movies.map(movie => {
+            return (favorites.find(favorite => favorite.movieId === movie.id)) ?
+              ({...movie, isFavorite: true}) : ({...movie, isFavorite: false})
+          })
+          this.setState({movies: formatedMovieData});
+        } else {
+          this.setState({movies})
+        }
+
       } catch (error) {
         this.setState({ error: error });
       }
@@ -30,28 +46,31 @@ class App extends Component {
     const getMovieComments = async () => {
       try {
         const commentDetails = await getComments();
-        this.setState({...commentDetails});            
+        this.setState({...commentDetails});
       } catch(error) {
         this.setState({ error: error });
-      }      
+      }
     };
+
     getMovieComments();
     getMoviesRequest();
-  }
 
-  componentDidUpdate() {
-   if (this.state.user.id) {
+    if (this.state.user.id) {
       const getUserMovieRatings = async () => {
         try {
           const ratings = await movieRatingsRequests(this.state.user.id)
+          console.log(ratings)
           this.setState({...ratings})
         } catch (error) {
           this.setState({ error: error });
         }
       }
-      return getUserMovieRatings();
+
+    getUserMovieRatings();
+
+      }
     }
-  }
+
 
   postUser = async (userCredentials) => {
     try {
@@ -69,12 +88,40 @@ class App extends Component {
   logOutUser = (event) => {
     event.preventDefault();
     if (event.target.innerHTML === "Log Out") {
-      this.setState({
-        user: {},
-      });
+      this.setState({ user: {} });
       localStorage.clear();
     }
   };
+
+  toggleFavoriteFlick = async (event) => {
+    const movieId = parseInt(event.target.closest('li').id)
+    const selectedFlick = this.state.movies.find(movie => movie.id === movieId)
+    const {add2FavoriteMovie, unfavoriteMovie} = toggleFavorites(selectedFlick.id, this.state.user.id)
+
+    const toggleMovieStatus = (newStatus) => {
+      const stateMoviesCopy = [...this.state.movies ]
+      for(let movie of stateMoviesCopy) {
+        if(movie.id === movieId) {
+          movie.isFavorite = newStatus
+        }
+      }
+      return stateMoviesCopy
+    }
+
+    try {
+      if (selectedFlick.isFavorite) {
+        const modifiedMovieState = toggleMovieStatus(false)
+        this.setState({movies: modifiedMovieState})
+        return await unfavoriteMovie();
+      } else {
+        const modifiedMovieState = toggleMovieStatus(true)
+        this.setState({movies: modifiedMovieState})
+        return await add2FavoriteMovie();
+      }
+    } catch (error) {
+      console.error({error})
+    }
+  }
 
   render() {
     return (
@@ -124,7 +171,12 @@ class App extends Component {
         <Route
           exact
           path='/user/:id'>
-          <Movies movies={this.state.movies} ratings={this.state.ratings} userId={this.state.user.id} />
+          <Movies
+            movies={this.state.movies}
+            ratings={this.state.ratings}
+            userId={this.state.user.id}
+            toggleFavorite={this.toggleFavoriteFlick}
+          />
           {!this.state.user.name && <Redirect to="/" />}
         </Route>
 
