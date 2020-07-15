@@ -2,10 +2,7 @@ import React from "react";
 import CommentForm from "./CommentForm";
 import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { getComments } from "../../apiCalls"
-jest.mock("../../apiCalls")
 
-//test that a user fills out a form
 describe("CommentForm", () => {
   it("should have two input fields and one button", () => {
     const { getByRole, getByPlaceholderText } = render(
@@ -21,8 +18,8 @@ describe("CommentForm", () => {
     expect(commentButton).toBeInTheDocument();
   });
 
-  it("should have allow a user to leave a comment", () => {
-    const { getByRole, getByPlaceholderText } = render(
+  it("should allow a user to fill out the form to leave a comment", () => {
+    const { getByPlaceholderText } = render(
       <CommentForm movieId={603} comments={[]}/>
     );
 
