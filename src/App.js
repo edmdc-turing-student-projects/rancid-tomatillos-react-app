@@ -103,7 +103,6 @@ class App extends Component {
       for(let movie of stateMoviesCopy) {
         if(movie.id === movieId) {
           movie.isFavorite = newStatus
-          console.log(movie)
         }
       }
       return stateMoviesCopy
