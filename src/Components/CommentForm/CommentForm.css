@@ -9,3 +9,7 @@
   margin-top: 1%;
   font-weight: bold;
 }
+
+textarea {
+  font-family: Arial;
+}
