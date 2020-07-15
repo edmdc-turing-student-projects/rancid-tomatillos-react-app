@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { addComment, getComments } from "../../apiCalls";
+import { addComment } from "../../apiCalls";
 import "./CommentForm.css";
+import { findComments } from "../../utils";
+
 
 class CommentForm extends Component {
   constructor({movieId, comments}) {
@@ -13,20 +15,7 @@ class CommentForm extends Component {
       error: ""
     }
   }
-
-  findComments() {
-    const comments = this.state.comments.filter(comment => comment.movie_id === this.state.movie_id)
-    
-    return comments.map(comment => {
-      return ( 
-        <section className="comments">
-          <p>{comment.comment}</p>
-          <p className="author">User: <i>{comment.author}</i></p>
-        </section>
-      );
-    })
-  }
-
+  
   postComment = async () => {
     const commentInfo = {
       author: this.state.author,
@@ -74,7 +63,7 @@ class CommentForm extends Component {
           />
         <button onClick={(event) => this.postComment(event)} type="button">Submit</button>
       </form>
-      {this.findComments()}
+      {findComments(this.state.comments, this.state.movie_id)}
     </>
     );
   }

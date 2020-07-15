@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./MovieMainPage.css";
 import CommentForm from "../CommentForm/CommentForm.js";
 import { getSingleMovieInfo } from "../../apiCalls";
-import { formatDate, findMovieRating } from "../../utils";
+import { formatDate, findMovieRating, findComments } from "../../utils";
 
 
 class MovieMainPage extends Component {
@@ -46,7 +46,7 @@ class MovieMainPage extends Component {
               {(this.props.ratings) ? findMovieRating(this.props.ratings, this. state.movie,this.props.userId) : null}
               </section>
               {this.props.userId && <CommentForm movieId={this.state.movie.id} comments={this.props.comments}/>}
-              {/* {this.findComments()} */}
+              {!this.props.userId && findComments(this.props.comments, this.state.movie.id)}
             </section>
           </section>
         )}
