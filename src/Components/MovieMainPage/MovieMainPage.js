@@ -18,19 +18,6 @@ class MovieMainPage extends Component {
     getMovieDetails();
   }
 
-  findComments() {
-    const comments = this.props.comments.filter(comment => comment.movie_id === this.state.movie.id)
-    
-    return comments.map(comment => {
-      return ( 
-        <section className="comments">
-          <p>{comment.comment}</p>
-          <p className="author">User: <i>{comment.author}</i></p>
-        </section>
-      );
-    })
-  }
-
   render() {  
     return (
       <section id="single-movie">
@@ -59,7 +46,7 @@ class MovieMainPage extends Component {
               {(this.props.ratings) ? findMovieRating(this.props.ratings, this. state.movie,this.props.userId) : null}
               </section>
               {this.props.userId && <CommentForm movieId={this.state.movie.id} comments={this.props.comments}/>}
-              {this.findComments()}
+              {/* {this.findComments()} */}
             </section>
           </section>
         )}

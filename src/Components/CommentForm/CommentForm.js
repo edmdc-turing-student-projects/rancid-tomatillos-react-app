@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { addComment } from "../../apiCalls";
+import { addComment, getComments } from "../../apiCalls";
 import "./CommentForm.css";
 
 class CommentForm extends Component {
@@ -12,6 +12,19 @@ class CommentForm extends Component {
       comments: comments,
       error: ""
     }
+  }
+
+  findComments() {
+    const comments = this.state.comments.filter(comment => comment.movie_id === this.state.movie_id)
+    
+    return comments.map(comment => {
+      return ( 
+        <section className="comments">
+          <p>{comment.comment}</p>
+          <p className="author">User: <i>{comment.author}</i></p>
+        </section>
+      );
+    })
   }
 
   postComment = async () => {
@@ -39,6 +52,7 @@ class CommentForm extends Component {
 
   render() {
     return (
+    <>
       <form title="comment-form" className="comment-form">
         <label htmlFor="name">Name:</label>
           <input
@@ -60,6 +74,8 @@ class CommentForm extends Component {
           />
         <button onClick={(event) => this.postComment(event)} type="button">Submit</button>
       </form>
+      {this.findComments()}
+    </>
     );
   }
 } 
