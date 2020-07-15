@@ -8,7 +8,8 @@ import { getAllMovies,
         loginUser,
         movieRatingsRequests,
         getComments,
-        getAllFavorites } from "./apiCalls";
+        getAllFavorites,
+        toggleFavorites} from "./apiCalls";
 
 class App extends Component {
   constructor({user = {}}) {
@@ -92,10 +93,35 @@ class App extends Component {
     }
   };
 
-  toggleFavoriteFlick = (event) => {
+  toggleFavoriteFlick = async (event) => {
     const movieId = parseInt(event.target.closest('li').id)
     const selectedFlick = this.state.movies.find(movie => movie.id === movieId)
-    return (selectedFlick.isFavorite) ? console.log("I'm a favorite") : console.log("I'm not")
+    const {add2FavoriteMovie, unfavoriteMovie} = toggleFavorites(selectedFlick.id, this.state.user.id)
+
+    const toggleMovieStatus = (newStatus) => {
+      const stateMoviesCopy = [...this.state.movies ]
+      for(let movie of stateMoviesCopy) {
+        if(movie.id === movieId) {
+          movie.isFavorite = newStatus
+          console.log(movie)
+        }
+      }
+      return stateMoviesCopy
+    }
+
+    try {
+      if (selectedFlick.isFavorite) {
+        const modifiedMovieState = toggleMovieStatus(false)
+        this.setState({movies: modifiedMovieState})
+        return await unfavoriteMovie();
+      } else {
+        const modifiedMovieState = toggleMovieStatus(true)
+        this.setState({movies: modifiedMovieState})
+        return await add2FavoriteMovie();
+      }
+    } catch (error) {
+      console.error({error})
+    }
   }
 
   render() {

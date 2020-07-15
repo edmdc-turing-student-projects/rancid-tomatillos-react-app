@@ -113,7 +113,7 @@ export const toggleFavorites = (movieId, userId) => {
   }
 
   return {
-    add2Favorites: async () => {
+    add2FavoriteMovie: async () => {
       const response = await fetch(favoritesURL, {
         method: "POST",
         ...mainRequestBody
@@ -122,6 +122,7 @@ export const toggleFavorites = (movieId, userId) => {
       if (response.ok) {
         return await response.json()
       } else {
+        console.log(response, "in ApiCalls")
         throw new Error({...response})
       }
     },
