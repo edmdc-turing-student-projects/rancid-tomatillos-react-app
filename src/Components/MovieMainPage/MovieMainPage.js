@@ -23,17 +23,13 @@ class MovieMainPage extends Component {
     
     return comments.map(comment => {
       return ( 
-        <>
-          <p>{comment.author}</p>
+        <section className="comments">
           <p>{comment.comment}</p>
-        </>
+          <p className="author">User: <i>{comment.author}</i></p>
+        </section>
       );
     })
   }
-
-  // displayNewComment() {
-
-  // }
 
   render() {  
     return (
@@ -56,13 +52,17 @@ class MovieMainPage extends Component {
                 <p><strong>Revenue:</strong> <br></br> ${(this.state.movie.revenue).toLocaleString('en')}</p>
                 <p><strong>Runtime:</strong> <br></br> {this.state.movie.runtime} Minutes</p>
                 <p><strong>Average Rating:</strong> <br></br> {Math.round(this.state.movie.average_rating)}</p>
-                {(this.props.ratings) ? findMovieRating(this.props.ratings, this.state.movie,this.props.user_id) : null}
               </section>
             </figure>
-            <section>
+            <section className="other-info">
+              <section className="userReview">
+              {(this.props.ratings) ? findMovieRating(this.props.ratings, this. state.movie,this.props.userId) : null}
+              </section>
               {this.props.userId && <CommentForm movieId={this.state.movie.id} comments={this.props.comments}/>}
+              {/* <section> */}
+                {this.findComments()}
+              {/* </section> */}
             </section>
-            <section>{this.findComments()}</section>
           </section>
         )}
       </section>
