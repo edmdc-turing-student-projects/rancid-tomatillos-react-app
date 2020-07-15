@@ -65,5 +65,12 @@ export default LogIn;
 LogIn.propTypes = {
   email: PropTypes.string,
   password: PropTypes.string,
+  error: PropTypes.string,
+  postUser: PropTypes.func,
+  redirect: PropTypes.bool,
 };
+
+LogIn.defaultProps = {
+  redirect: false,
+}
 

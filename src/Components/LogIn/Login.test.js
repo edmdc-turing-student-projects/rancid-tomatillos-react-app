@@ -1,6 +1,6 @@
 import React from "react";
 import Login from "./Login";
-import { render, fireEvent, waitFor, getByText } from "@testing-library/react";
+import { render, fireEvent, } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Router, MemoryRouter } from "react-router-dom";
 import { createMemoryHistory } from "history";
@@ -88,25 +88,5 @@ describe("Login", () => {
     fireEvent.click(button);
 
     expect(history.location.pathname).toBe("/");
-  });
-
-  it.skip("should show alert when a user logs in with incorrect info", () => {
-    const history = createMemoryHistory();
-    const mockUserLogin = jest.fn();
-    const { getByRole, getByPlaceholderText, getByText } = render(
-      <Router history={history}>
-        <Login postUser={mockUserLogin} />
-      </Router>
-    );
-
-    const userTestEmail = "bob@turing.io";
-    const userTestPassword = "abc123";
-
-    const email = getByPlaceholderText("email");
-    const password = getByPlaceholderText("password");
-    const button = getByRole("button", { name: "Submit" });
-    fireEvent.change(email, { target: { value: userTestEmail } });
-    fireEvent.change(password, { target: { value: userTestPassword } });
-    fireEvent.click(button);
   });
 });

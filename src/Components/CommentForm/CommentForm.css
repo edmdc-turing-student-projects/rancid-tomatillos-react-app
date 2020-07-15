@@ -3,9 +3,19 @@
   flex-direction: column;
   width: 100%;
   text-align: left;
+  border-radius:
 }
 
 .comment-form label {
   margin-top: 1%;
   font-weight: bold;
+}
+
+textarea {
+  font-family: Arial;
+  border-radius: 5px;
+}
+
+input {
+  border-radius: 5px;
 }

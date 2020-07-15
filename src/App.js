@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./App.css";
 import Movies from "./Components/Movies/Movies";
 import LogIn from "./Components/LogIn/LogIn";
@@ -65,11 +66,9 @@ class App extends Component {
           this.setState({ error: error });
         }
       }
-
-    getUserMovieRatings();
-
-      }
+      getUserMovieRatings();
     }
+  }
 
 
   postUser = async (userCredentials) => {
@@ -191,3 +190,15 @@ class App extends Component {
 }
 
 export default App;
+
+App.propTypes = {
+  movies: PropTypes.array,
+  user: PropTypes.object,
+  error: PropTypes.string,
+  getAllMovies: PropTypes.func,
+  loginUser: PropTypes.func,
+  movieRatingsRequests: PropTypes.func,
+  getComments: PropTypes.func,
+  getAllFavorites: PropTypes.func,
+  toggleFavorites: PropTypes.func,
+};

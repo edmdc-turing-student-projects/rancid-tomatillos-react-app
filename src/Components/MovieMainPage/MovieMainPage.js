@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./MovieMainPage.css";
 import CommentForm from "../CommentForm/CommentForm.js";
 import { getSingleMovieInfo } from "../../apiCalls";
-import { formatDate, findMovieRating } from "../../utils";
+import { formatDate, findMovieRating, findComments } from "../../utils";
 
 
 class MovieMainPage extends Component {
@@ -16,19 +17,6 @@ class MovieMainPage extends Component {
       }
     };
     getMovieDetails();
-  }
-
-  findComments() {
-    const comments = this.props.comments.filter(comment => comment.movie_id === this.state.movie.id)
-    
-    return comments.map(comment => {
-      return ( 
-        <section className="comments">
-          <p>{comment.comment}</p>
-          <p className="author">User: <i>{comment.author}</i></p>
-        </section>
-      );
-    })
   }
 
   render() {  
@@ -51,15 +39,15 @@ class MovieMainPage extends Component {
                 <p><strong>Budget:</strong> <br></br> ${(this.state.movie.budget).toLocaleString('en')}</p>
                 <p><strong>Revenue:</strong> <br></br> ${(this.state.movie.revenue).toLocaleString('en')}</p>
                 <p><strong>Runtime:</strong> <br></br> {this.state.movie.runtime} Minutes</p>
-                <p><strong>Average Rating:</strong> <br></br> {Math.round(this.state.movie.average_rating)}</p>
+                <p><strong>Average Rating:</strong> <br></br> {Math.round(this.state.movie.average_rating)} / 10</p>
               </section>
             </figure>
             <section className="other-info">
               <section className="userReview">
-              {(this.props.ratings) ? findMovieRating(this.props.ratings, this. state.movie,this.props.userId) : null}
+              {(this.props.ratings) ? findMovieRating(this.props.ratings, this.state.movie,this.props.userId) : null}
               </section>
               {this.props.userId && <CommentForm movieId={this.state.movie.id} comments={this.props.comments}/>}
-              {this.findComments()}
+              {!this.props.userId && findComments(this.props.comments, this.state.movie.id)}
             </section>
           </section>
         )}
@@ -69,3 +57,14 @@ class MovieMainPage extends Component {
 }
 
 export default MovieMainPage;
+
+// MovieMainPage.propTypes = {
+//   movie: PropTypes.object,
+//   id: PropTypes.number,
+//   ratings: PropTypes.array,
+//   findMovieRating: PropTypes.func,
+//   userId: PropTypes.number,
+//   comments: PropTypes.array,
+//   findComments: PropTypes.func,
+//   getSingleMovieInfo: PropTypes.func,
+// };

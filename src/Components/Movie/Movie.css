@@ -12,8 +12,8 @@ div::before {
 
 div > img {
   top: 0; right: 0; bottom: 0; left: 0;
-  padding-left: 10%;
+  margin-left: 10%;
   width: 90%;
   height: 95%;
-  border-radius: 15px;
+  border-radius: 10px;
 }
