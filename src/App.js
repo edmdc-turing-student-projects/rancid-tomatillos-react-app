@@ -129,8 +129,10 @@ class App extends Component {
 
         <section className="header">
           <Link className="headerTitle" to="/">
-            {!this.state.user.name ? (<h1>Rancid Tomatillos</h1>) :
-              (<>
+            {!this.state.user.name ? (
+              <h1>Rancid Tomatillos</h1>
+            ) : (
+              <>
                 <h1 className="title">Rancid Tomatillos</h1>
                 <h3 aria-label="Welcome Banner">{`Welcome, ${this.state.user.name}!`}</h3>
               </>)
@@ -138,9 +140,14 @@ class App extends Component {
           </Link>
           <nav className="navBar">
             {this.state.user.name ? (
-              <button className="navBar" onClick={(event) => this.logOutUser(event)}>
-                Log Out
-              </button>
+              <>
+                <button className="navBar" onClick={(event) => this.logOutUser(event)}>
+                  Log Out
+                </button>
+                <Link className="navBar" to="/favorites">
+                  <button> Favorites </button>
+                </Link>
+              </>
             ) : (
               <Link className="navBar" to="/login">
                 <button>Log In!</button>
@@ -178,6 +185,17 @@ class App extends Component {
             toggleFavorite={this.toggleFavoriteFlick}
           />
           {!this.state.user.name && <Redirect to="/" />}
+        </Route>
+
+        <Route
+          exact
+          path='/favorites'>
+          <Movies
+            movies={this.state.movies.filter(movie => movie.isFavorite)}
+            ratings={this.state.ratings}
+            userId={this.state.user.id}
+            toggleFavorite={this.toggleFavoriteFlick}
+          />
         </Route>
 
         <Route exact path="/">
