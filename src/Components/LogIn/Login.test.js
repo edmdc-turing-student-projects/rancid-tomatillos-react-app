@@ -1,6 +1,6 @@
 import React from "react";
 import Login from "./Login";
-import { render, fireEvent, waitFor, getByText } from "@testing-library/react";
+import { render, fireEvent, } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Router, MemoryRouter } from "react-router-dom";
 import { createMemoryHistory } from "history";
@@ -93,7 +93,8 @@ describe("Login", () => {
   it.skip("should show alert when a user logs in with incorrect info", () => {
     const history = createMemoryHistory();
     const mockUserLogin = jest.fn();
-    const { getByRole, getByPlaceholderText, getByText } = render(
+    const alert = jest.fn();
+    const { getByRole, getByPlaceholderText } = render(
       <Router history={history}>
         <Login postUser={mockUserLogin} />
       </Router>
@@ -108,5 +109,6 @@ describe("Login", () => {
     fireEvent.change(email, { target: { value: userTestEmail } });
     fireEvent.change(password, { target: { value: userTestPassword } });
     fireEvent.click(button);
+    expect(alert).toHaveBeenCalled(1)
   });
 });

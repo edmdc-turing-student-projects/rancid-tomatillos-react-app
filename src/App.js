@@ -65,11 +65,9 @@ class App extends Component {
           this.setState({ error: error });
         }
       }
-
-    getUserMovieRatings();
-
-      }
+      getUserMovieRatings();
     }
+  }
 
 
   postUser = async (userCredentials) => {

@@ -54,6 +54,7 @@ class CommentForm extends Component {
             name="comment"
             rows="3"
             required="required"
+            placeholder="comment"
             value={this.state.comment}
             onChange={(event) => this.updateCommentFields(event)}
           />
