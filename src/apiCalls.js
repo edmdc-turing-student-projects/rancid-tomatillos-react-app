@@ -80,7 +80,7 @@ export const deleteRating = async (userId, ratingId) => {
 
   const response = await fetch(singleRatingUrl, requestOptions)
 
-  return await response.json()
+  return await response.json();
 };
 
 export const getComments = async () => {

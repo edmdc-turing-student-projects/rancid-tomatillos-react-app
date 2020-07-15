@@ -22,7 +22,8 @@ class CommentForm extends Component {
     }
     try {
       const response = await addComment(commentInfo);
-      this.state.comments.push(response);
+      const updatedComments = this.state.comments.push(response);
+      this.setState({comments: [...updatedComments ]})
     } catch(error) {
       this.setState({error: error})
     }
@@ -61,6 +62,6 @@ class CommentForm extends Component {
       </form>
     );
   }
-} 
+}
 
 export default CommentForm;

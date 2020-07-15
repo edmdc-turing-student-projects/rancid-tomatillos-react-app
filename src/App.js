@@ -52,8 +52,6 @@ class App extends Component {
       }
     };
 
-    getMovieComments();
-    getMoviesRequest();
 
     if (this.state.user.id) {
       const getUserMovieRatings = async () => {
@@ -66,7 +64,9 @@ class App extends Component {
         }
       }
 
-    getUserMovieRatings();
+      getMoviesRequest();
+      getMovieComments();
+      getUserMovieRatings();
 
       }
     }
