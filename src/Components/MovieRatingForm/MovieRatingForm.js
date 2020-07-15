@@ -55,7 +55,6 @@ class MovieRatingForm extends Component {
     try {
       const response = await deleteRating(this.state.userId, this.state.userRating.id)
       this.setState({userRating: null});
-      this.setState({rating: null})
       console.log(response)
     } catch (error) {
       this.setState({error: error});
@@ -114,8 +113,3 @@ MovieRatingForm.propTypes = {
   addRating: PropTypes.func,
   deleteRating: PropTypes.func,
 };
-
-
-MovieRatingForm.defaultProps = {
-  rating: null,
-}

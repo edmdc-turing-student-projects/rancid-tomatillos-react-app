@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./MovieMainPage.css";
 import CommentForm from "../CommentForm/CommentForm.js";
 import { getSingleMovieInfo } from "../../apiCalls";
@@ -43,7 +44,7 @@ class MovieMainPage extends Component {
             </figure>
             <section className="other-info">
               <section className="userReview">
-              {(this.props.ratings) ? findMovieRating(this.props.ratings, this. state.movie,this.props.userId) : null}
+              {(this.props.ratings) ? findMovieRating(this.props.ratings, this.state.movie,this.props.userId) : null}
               </section>
               {this.props.userId && <CommentForm movieId={this.state.movie.id} comments={this.props.comments}/>}
               {!this.props.userId && findComments(this.props.comments, this.state.movie.id)}
@@ -56,3 +57,14 @@ class MovieMainPage extends Component {
 }
 
 export default MovieMainPage;
+
+// MovieMainPage.propTypes = {
+//   movie: PropTypes.object,
+//   id: PropTypes.number,
+//   ratings: PropTypes.array,
+//   findMovieRating: PropTypes.func,
+//   userId: PropTypes.number,
+//   comments: PropTypes.array,
+//   findComments: PropTypes.func,
+//   getSingleMovieInfo: PropTypes.func,
+// };
