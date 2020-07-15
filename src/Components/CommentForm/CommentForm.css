@@ -3,6 +3,7 @@
   flex-direction: column;
   width: 100%;
   text-align: left;
+  border-radius:
 }
 
 .comment-form label {
@@ -12,4 +13,9 @@
 
 textarea {
   font-family: Arial;
+  border-radius: 5px;
+}
+
+input {
+  border-radius: 5px;
 }
