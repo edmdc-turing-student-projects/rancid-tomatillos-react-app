@@ -59,9 +59,7 @@ class MovieMainPage extends Component {
               {(this.props.ratings) ? findMovieRating(this.props.ratings, this. state.movie,this.props.userId) : null}
               </section>
               {this.props.userId && <CommentForm movieId={this.state.movie.id} comments={this.props.comments}/>}
-              {/* <section> */}
-                {this.findComments()}
-              {/* </section> */}
+              {this.findComments()}
             </section>
           </section>
         )}
