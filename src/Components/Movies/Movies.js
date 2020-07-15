@@ -1,7 +1,8 @@
 import React from "react";
 import Movie from "../Movie/Movie.js";
 import "./Movies.css";
-import emptyStar from "../../empty_start.png"
+import emptyStar from "../../empty-Star.png"
+import filledStar from "../../Filled-Star.png"
 import { Link } from "react-router-dom";
 import { findMovieRating } from "../../utils";
 
@@ -9,10 +10,11 @@ const Movies = ({ movies, ratings, userId, toggleFavorite }) => {
   const favoriteStatus = (movie) => {
     return movie.isFavorite ? (
       <button
+        type="image"
         className="starIcon active"
         onClick={(event) => toggleFavorite(event)}
       >
-        <img src={emptyStar} alt="favorited movie"/>
+        <img src={filledStar} alt="favorited movie"/>
       </button>
     ) : (
       <button
