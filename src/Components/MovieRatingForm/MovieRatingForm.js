@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./MovieRatingForm.css";
+import styles from "./MovieRatingForm.css";
 import { addRating, deleteRating, movieRatingsRequests } from "../../apiCalls";
 
 class MovieRatingForm extends Component {
@@ -70,7 +70,7 @@ class MovieRatingForm extends Component {
 
   userMovieRatingFragment = () => {
     return (
-      <>
+      <div>
         <p><strong>Your Rating:</strong> {this.state.userRating.rating}</p>
         <button
           onClick={() => this.deleteMovieRating()}
@@ -78,13 +78,13 @@ class MovieRatingForm extends Component {
         >
         Delete
         </button>
-      </>
+      </div>
     )
   }
 
   movieRatingFormFragment = () => {
     return (
-      <form>
+      <form className="ratingForm">
         <label htmlFor="submitRating">Add a Rating:</label>
         <select
           id="submitRating"

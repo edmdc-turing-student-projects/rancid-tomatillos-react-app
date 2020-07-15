@@ -10,14 +10,20 @@ ul {
 }
 
 li {
-  display: inline-block;
   background-color: blanchedalmond;
   border: 4px solid blanchedalmond;
-  padding: 0px;
+  box-shadow: 3px 3px 3px 3px #ccc;
+  display: flex;
+  flex-flow: column;
+  justify-items: space-around;
   margin-right: 15px;
   margin-bottom: 3%;
-  color: blue;
-  box-shadow: 3px 3px 3px 3px #ccc;
+  padding: 0px;
+}
+
+.ratingForm {
+  align-self: end;
+  margin-bottom: 0px;
 }
 
 a {
@@ -27,7 +33,6 @@ a {
 
 a:visited {
   color: #0F1700;
-  /* text-decoration: none; */
 }
 
 .starIcon {
@@ -41,4 +46,3 @@ img {
   height: 25px;
 }
 
-/* @media (max-widt */
