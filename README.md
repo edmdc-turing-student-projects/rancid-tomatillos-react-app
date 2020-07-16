@@ -18,7 +18,7 @@ Movie rating site where a user can login and rate/favorite the movies they loved
 ![No Login](https://media.giphy.com/media/eMUAOdDlIUz0gSIAZ4/giphy.gif)
 
 ### Logged in user's experience:
-![Logged In](http://g.recordit.co/Q6UfDK3Hna.gif)
+![Logged In](https://media.giphy.com/media/TjXinpnPuUIwb8d50B/giphy.gif)
 
 ### Logged in user's favoriting and deleting:
 ![Favoriting and Deleting](http://g.recordit.co/rKbnbiEKjY.gif)
