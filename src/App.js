@@ -53,7 +53,6 @@ class App extends Component {
       }
     };
 
-
     if (this.state.user.id) {
       const getUserMovieRatings = async () => {
         try {
@@ -64,15 +63,12 @@ class App extends Component {
           this.setState({ error: error });
         }
       }
+      getUserMovieRatings();
+      }
 
       getMoviesRequest();
       getMovieComments();
-      getUserMovieRatings();
-
-      }
     }
-  }
-
 
   postUser = async (userCredentials) => {
     try {
@@ -123,7 +119,7 @@ class App extends Component {
     } catch (error) {
       console.error({error})
     }
-  }
+  };
 
   render() {
     return (

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./MovieRatingForm.css";
-import { addRating, deleteRating } from "../../apiCalls";
+import { addRating, deleteRating, movieRatingsRequests } from "../../apiCalls";
 
 
 class MovieRatingForm extends Component {
