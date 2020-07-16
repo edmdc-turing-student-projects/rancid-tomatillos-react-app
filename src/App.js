@@ -57,7 +57,6 @@ class App extends Component {
       const getUserMovieRatings = async () => {
         try {
           const ratings = await movieRatingsRequests(this.state.user.id)
-          console.log(ratings)
           this.setState({...ratings})
         } catch (error) {
           this.setState({ error: error });

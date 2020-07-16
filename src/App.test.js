@@ -40,7 +40,6 @@ describe("App", () => {
     );
 
     const movieTitle = await findByRole('listitem', {title: "Artemis Fowl"})
-    // const movieTitle = await waitFor(() => getByText("Artemis Fowl"))
     expect(movieTitle).toBeInTheDocument();
   });
 
