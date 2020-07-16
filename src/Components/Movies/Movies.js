@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Movie from "../Movie/Movie.js";
 import "./Movies.css";
 import emptyStar from "../../empty-Star.png"
@@ -25,6 +26,7 @@ const Movies = ({ movies, ratings, userId, toggleFavorite }) => {
       </button>
     )
   }
+  
   const movieResults = movies.map((movie, index) => {
     return (
       <li id={movie.id} key={index} title={movie.title}>
@@ -51,3 +53,12 @@ const Movies = ({ movies, ratings, userId, toggleFavorite }) => {
 };
 
 export default Movies;
+
+Movies.propTypes = {
+  movies: PropTypes.array,
+  userId: PropTypes.number,
+  toggleFavorite: PropTypes.func,
+  movie_id: PropTypes.number,
+  comments: PropTypes.array,
+  findComments: PropTypes.func,
+};

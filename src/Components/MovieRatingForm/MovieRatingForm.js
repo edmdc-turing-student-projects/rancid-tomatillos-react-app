@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import styles from "./MovieRatingForm.css";
-import { addRating, deleteRating, movieRatingsRequests } from "../../apiCalls";
+import PropTypes from "prop-types";
+import "./MovieRatingForm.css";
+import { addRating, deleteRating } from "../../apiCalls";
+
 
 class MovieRatingForm extends Component {
   constructor({ movieId, userId, userRating = null }) {
@@ -111,3 +113,14 @@ class MovieRatingForm extends Component {
 }
 
 export default MovieRatingForm;
+
+MovieRatingForm.propTypes = {
+  movieId: PropTypes.number,
+  userRating: PropTypes.object,
+  rating: PropTypes.string,
+  userId: PropTypes.number,
+  error: PropTypes.string,
+  movieId: PropTypes.number,
+  addRating: PropTypes.func,
+  deleteRating: PropTypes.func,
+};

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./Movie.css";
 import { formatDate } from "../../utils";
 
@@ -13,7 +14,7 @@ const Movie = ({ posterPath, title, averageRating, releaseDate }) => {
         </div>
         <figcaption>
           <p>{formatDate(releaseDate)}</p>
-          <p>Public Rating:{averageRating.toFixed(2)}</p>
+          <p>Average Rating: {Math.round(averageRating)} / 10</p>
         </figcaption>
       </figure>
     </article>
@@ -21,3 +22,11 @@ const Movie = ({ posterPath, title, averageRating, releaseDate }) => {
 };
 
 export default Movie;
+
+Movie.propTypes = {
+  posterPath: PropTypes.string,
+  title: PropTypes.string,
+  averageRating: PropTypes.number,
+  releaseDate: PropTypes.string,
+  formatDate: PropTypes.func,
+};

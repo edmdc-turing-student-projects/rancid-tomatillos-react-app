@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { addComment } from "../../apiCalls";
 import "./CommentForm.css";
+import { findComments } from "../../utils";
+
 
 class CommentForm extends Component {
   constructor({movieId, comments}) {
@@ -22,8 +25,7 @@ class CommentForm extends Component {
     }
     try {
       const response = await addComment(commentInfo);
-      const updatedComments = this.state.comments.push(response);
-      this.setState({comments: [...updatedComments ]})
+      this.setState({comments: [...this.state.comments, response]})
     } catch(error) {
       this.setState({error: error})
     }
@@ -40,6 +42,7 @@ class CommentForm extends Component {
 
   render() {
     return (
+    <>
       <form title="comment-form" className="comment-form">
         <label htmlFor="name">Name:</label>
           <input
@@ -55,13 +58,26 @@ class CommentForm extends Component {
             name="comment"
             rows="3"
             required="required"
+            placeholder="comment"
             value={this.state.comment}
             onChange={(event) => this.updateCommentFields(event)}
           />
         <button onClick={(event) => this.postComment(event)} type="button">Submit</button>
       </form>
+      {findComments(this.state.comments, this.state.movie_id)}
+    </>
     );
   }
 }
 
 export default CommentForm;
+
+CommentForm.propTypes = {
+  author: PropTypes.string,
+  comment: PropTypes.string,
+  error: PropTypes.string,
+  movie_id: PropTypes.number,
+  comments: PropTypes.array,
+  findComments: PropTypes.func,
+};
+

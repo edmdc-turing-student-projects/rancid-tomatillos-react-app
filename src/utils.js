@@ -25,3 +25,16 @@ export const formatDate = (releaseDate) => {
   );
   return `Released on ${formattedDate}`;
 }
+
+export const findComments = (comments,movie_id) => {
+  const movieComments = comments.filter(comment => comment.movie_id === movie_id)
+  
+  return movieComments.map(comment => {
+    return ( 
+      <section className="comments">
+        <p>{comment.comment}</p>
+        <p className="author">User: <i>{comment.author}</i></p>
+      </section>
+    );
+  })
+}
