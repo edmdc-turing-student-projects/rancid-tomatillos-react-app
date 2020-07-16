@@ -15,7 +15,7 @@ Movie rating site where a user can login and rate/favorite the movies they loved
 # In Action
 
 ### Non-logged in user side:
-![No Login](https://im4.ezgif.com/tmp/ezgif-4-fcaa786646ba.gif)
+![No Login](https://media.giphy.com/media/eMUAOdDlIUz0gSIAZ4/giphy.gif)
 
 ### Logged in user's experience:
 ![Logged In](http://g.recordit.co/Q6UfDK3Hna.gif)
