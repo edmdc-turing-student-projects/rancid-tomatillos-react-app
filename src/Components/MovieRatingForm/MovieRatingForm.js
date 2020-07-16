@@ -54,6 +54,7 @@ class MovieRatingForm extends Component {
   deleteMovieRating = async() => {
     try {
       const {ratings} = await movieRatingsRequests(this.state.userId)
+      console.log(ratings)
       const movieRating = () => {
         for (let rating of ratings) {
           if (rating.user_id === this.state.userId && rating.movie_id === this.state.movieId) {
@@ -85,7 +86,7 @@ class MovieRatingForm extends Component {
 
   movieRatingFormFragment = () => {
     return (
-      <form className="ratingForm">
+      <form className="ratingForm" title="Submit rating form">
         <label htmlFor="submitRating">Add a Rating:</label>
         <select
           id="submitRating"

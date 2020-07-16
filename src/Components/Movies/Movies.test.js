@@ -72,7 +72,7 @@ describe("Movies when user is logged in", () => {
       </MemoryRouter>
     );
 
-    const submitRatingBtn = getByRole('button', {name: "Submit Review"})
+    const submitRatingBtn = getByRole('button', {name: "Submit Rating"})
     expect(submitRatingBtn).toBeInTheDocument();
   })
 
