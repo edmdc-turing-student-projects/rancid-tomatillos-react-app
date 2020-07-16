@@ -1,0 +1,11 @@
+form,
+div {
+  display: flex;
+  flex-flow: column;
+  width: 95%;
+  height: 13%;
+  padding: 0px;
+  margin: 0px;
+  align-self: end;
+}
+

@@ -68,7 +68,7 @@ class CommentForm extends Component {
     </>
     );
   }
-} 
+}
 
 export default CommentForm;
 
@@ -80,3 +80,4 @@ CommentForm.propTypes = {
   comments: PropTypes.array,
   findComments: PropTypes.func,
 };
+

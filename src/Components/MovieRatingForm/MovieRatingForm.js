@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./MovieRatingForm.css";
 import { addRating, deleteRating } from "../../apiCalls";
 
+
 class MovieRatingForm extends Component {
   constructor({ movieId, userId, userRating = null }) {
     super();
@@ -19,17 +20,16 @@ class MovieRatingForm extends Component {
     const scores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     return scores.map((score) => {
       return (
-        <>
-          <label htmlFor={`ratingChoice${score}`}>{score}</label>
-          <input
-            key="score"
-            type="radio"
-            id={`ratingChoice${score}`}
-            name="rating"
-            value={score}
-            defaultChecked={false}
-          />
-        </>
+        <option
+          key={score}
+          type="radio"
+          id={`ratingChoice${score}`}
+          name="rating"
+          value={score}
+          defaultChecked={false}
+        >
+          {score}
+        </option>
       )
     })
   }
@@ -38,59 +38,70 @@ class MovieRatingForm extends Component {
     this.setState({ rating:  event.target.value})
   }
 
- postMovieRating = async () => {
-   const movieInfo = {
-     movie_id: parseInt(this.state.movieId),
-     rating: parseInt(this.state.rating)
-   }
-    try {
-      const response = await addRating(this.state.userId, movieInfo);
-      this.setState({userRating: response.rating})
-    } catch(error)  {
-      this.setState({ error: error });
+  postMovieRating = async (event) => {
+    event.preventDefault();
+    const movieInfo = {
+      movie_id: this.state.movieId,
+      rating: parseInt(this.state.rating)
     }
-  }
+     try {
+       const response = await addRating(this.state.userId, movieInfo);
+       this.setState({userRating: response.rating})
+     } catch(error)  {
+       this.setState({ error: error });
+     }
+   }
 
-  deleteMovieRating = async () => {
+  deleteMovieRating = async() => {
     try {
-      const response = await deleteRating(this.state.userId, this.state.userRating.id)
+      const {ratings} = await movieRatingsRequests(this.state.userId)
+      const movieRating = () => {
+        for (let rating of ratings) {
+          if (rating.user_id === this.state.userId && rating.movie_id === this.state.movieId) {
+            return rating
+          }
+        }
+      }
       this.setState({userRating: null});
+      const response = await deleteRating(this.state.userId, movieRating().id)
       console.log(response)
     } catch (error) {
-      this.setState({error: error});
+      console.error(error)
     }
   }
 
   userMovieRatingFragment = () => {
     return (
-      <>
+      <div>
         <p><strong>Your Rating:</strong> {this.state.userRating.rating}</p>
         <button
-          onClick={this.deleteMovieRating}
+          onClick={() => this.deleteMovieRating()}
           title="delete rating"
         >
         Delete
         </button>
-      </>
+      </div>
     )
   }
 
   movieRatingFormFragment = () => {
     return (
-      <>
-        <form
+      <form className="ratingForm">
+        <label htmlFor="submitRating">Add a Rating:</label>
+        <select
+          id="submitRating"
           title="submit a movie rating"
           onChange={this.changeHandler}
         >
           {this.formInputs()}
-          <button
-            onClick={() => this.postMovieRating()}
-            type="button"
-          >
-            Submit Review
-          </button>
-        </form>
-      </>
+        </select>
+        <button
+          onClick={(event) => this.postMovieRating(event)}
+          type="submit"
+        >
+          Submit Rating
+        </button>
+      </form>
     )
   }
 

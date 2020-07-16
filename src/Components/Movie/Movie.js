@@ -7,12 +7,12 @@ import { formatDate } from "../../utils";
 const Movie = ({ posterPath, title, averageRating, releaseDate }) => {
   return (
     <article>
+      <h4>{title}</h4>
       <figure>
         <div className="movieCard">
           <img className="movieImg" alt={`${title} movie poster`} src={posterPath} />
         </div>
         <figcaption>
-          <h4>{title}</h4>
           <p>{formatDate(releaseDate)}</p>
           <p>Average Rating: {Math.round(averageRating)} / 10</p>
         </figcaption>
