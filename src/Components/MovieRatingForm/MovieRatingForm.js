@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import "./MovieRatingForm.css";
 import { addRating, deleteRating, movieRatingsRequests } from "../../apiCalls";
 
-
 class MovieRatingForm extends Component {
   constructor({ movieId, userId, userRating = null }) {
     super();

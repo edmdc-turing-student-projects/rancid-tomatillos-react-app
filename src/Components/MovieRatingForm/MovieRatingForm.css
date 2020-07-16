@@ -1,11 +1,30 @@
 form,
 div {
   display: flex;
-  flex-flow: column;
-  width: 95%;
-  height: 13%;
-  padding: 0px;
-  margin: 0px;
-  align-self: end;
+  justify-content: center;
+    /* flex-flow: column; */
+    /* width: 95%; */
+    /* height: 13%; */
+    /* padding: 0px; */
+    /* margin: 0px; */
+    /* align-self: end;*/
 }
 
+
+.ratingForm {
+  display: flex;
+  justify-content: center;
+}
+
+.ratingForm select {
+  width: fit-content;
+  margin-left: 2%;
+}
+
+.ratingForm button {
+  width: fit-content;
+  margin-left: 2%;
+  color: #F3F3F3;
+  background-color: #696F00;
+  border-radius: 5px;
+}
