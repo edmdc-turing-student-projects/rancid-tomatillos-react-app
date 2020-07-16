@@ -124,7 +124,7 @@ describe("MovieMainPage", () => {
     const movieAltText = await waitFor(() =>
       getByAltText("Backdrop for Artemis Fowl")
     );
-    const movieAvgRating = await waitFor(() => getByText("5"));
+    const movieAvgRating = await waitFor(() => getByText("5 / 10"));
     const movieUserRating = await waitFor(() => getByText("6"));
     const movieComment = await waitFor(() => getByText("Great movie!"));
 
@@ -164,7 +164,7 @@ describe("MovieMainPage", () => {
     );
 
     const movieReviewButton = await waitFor(() =>
-      getByRole("button", { name: "Submit Review" })
+      getByRole("button", { name: "Submit Rating" })
     );
     expect(movieReviewButton).toBeInTheDocument();
   });
@@ -196,7 +196,7 @@ describe("MovieMainPage", () => {
     );
 
     const movieReviewButton = await waitFor(() =>
-      queryByRole("button", { name: "Submit Review" })
+      queryByRole("button", { name: "Submit Rating" })
     );
     const userRating = await waitFor(() => queryByText("Your Rating:"));
     const commentForm = await waitFor(() => queryByTitle("comment-form"));
