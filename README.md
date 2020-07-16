@@ -26,18 +26,25 @@ Movie rating site where a user can login and rate/favorite the movies they loved
 ## Setup
 [Backend Repo](https://github.com/emontealvo/rancid-tomatillos-be-api)
 
+**Note: Make sure the front-end and back-end repositories are cloned into seperate 
+directories and ran on different terminal tab/windows**
+
 ```bash 
-create directory
+mkdir rancid-tomatillos-react-app && cd rancid-tomatillos-react-app
 git clone [this file path]
+npm install 
+npm start
+```
+In new terminal window/tab:
+
+``` bash
+mkdir rancid-tomatillos-be-api && cd rancid-tomatillos-be-api
 git clone [backend file path]
 cd rancid-tomatillos-be-api
 npm install
 npm start
-cd ..
-cd rancid-tomatillos-react-app
-npm install 
-npm start
 ```
+
 Log in info: 
 ```bash
 username: greg@turing.io
