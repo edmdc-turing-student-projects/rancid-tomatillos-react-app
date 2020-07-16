@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./MovieRatingForm.css";
-import { addRating, deleteRating } from "../../apiCalls";
-
+import { addRating, deleteRating, movieRatingsRequests } from "../../apiCalls";
 
 class MovieRatingForm extends Component {
   constructor({ movieId, userId, userRating = null }) {
@@ -72,15 +71,15 @@ class MovieRatingForm extends Component {
 
   userMovieRatingFragment = () => {
     return (
-      <div>
+      <section className="user-rating">
         <p><strong>Your Rating:</strong> {this.state.userRating.rating}</p>
-        <button
+        <button className="delete-btn"
           onClick={() => this.deleteMovieRating()}
           title="delete rating"
         >
         Delete
         </button>
-      </div>
+      </section>
     )
   }
 

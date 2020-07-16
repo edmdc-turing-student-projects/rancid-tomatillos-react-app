@@ -35,7 +35,7 @@ margin-left: 9%;
 .other-info button {
   width: fit-content;
   height: fit-content;
-  align-self: center;
+  /* align-self: center; */
   color: #F3F3F3;
   background-color: #696F00;
   border-radius: 5px;
@@ -64,7 +64,6 @@ margin-left: 9%;
 
 .userReview {
   display: flex;
-  color: blue;
 }
 
 .userReview form {
