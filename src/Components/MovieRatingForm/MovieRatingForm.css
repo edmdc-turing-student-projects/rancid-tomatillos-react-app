@@ -1,19 +1,20 @@
-form,
+/* form,
 div {
   display: flex;
-  justify-content: center;
+  justify-content: center; */
     /* flex-flow: column; */
     /* width: 95%; */
     /* height: 13%; */
     /* padding: 0px; */
     /* margin: 0px; */
     /* align-self: end;*/
-}
+/* } */
 
 
 .ratingForm {
   display: flex;
   justify-content: center;
+  margin-left: 5%;
 }
 
 .ratingForm select {
@@ -27,4 +28,25 @@ div {
   color: #F3F3F3;
   background-color: #696F00;
   border-radius: 5px;
+}
+
+.delete-btn {
+  width: fit-content;
+  height: fit-content;
+  margin-left: 2%;
+  margin-top: 4%;
+  color: #F3F3F3;
+  background-color: #696F00;
+  border-radius: 5px;
+}
+
+.user-rating {
+  display: flex;
+  justify-content: center;
+  margin-left: 4%;
+  margin-top: -3%;
+}
+
+.user-rating p{
+  margin-top: 4.5%;
 }

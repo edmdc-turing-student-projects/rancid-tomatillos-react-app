@@ -71,15 +71,15 @@ class MovieRatingForm extends Component {
 
   userMovieRatingFragment = () => {
     return (
-      <div>
+      <section className="user-rating">
         <p><strong>Your Rating:</strong> {this.state.userRating.rating}</p>
-        <button
+        <button className="delete-btn"
           onClick={() => this.deleteMovieRating()}
           title="delete rating"
         >
         Delete
         </button>
-      </div>
+      </section>
     )
   }
 
