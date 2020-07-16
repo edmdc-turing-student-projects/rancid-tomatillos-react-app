@@ -17,6 +17,9 @@ describe("Movie", () => {
     expect(container).toMatchInlineSnapshot(`
       <div>
         <article>
+          <h4>
+            Artemis Fowl
+          </h4>
           <figure>
             <div
               class="movieCard"
@@ -28,14 +31,13 @@ describe("Movie", () => {
               />
             </div>
             <figcaption>
-              <h4>
-                Artemis Fowl
-              </h4>
               <p>
                 Released on June 11, 2020
               </p>
               <p>
+                Average Rating: 
                 5
+                 / 10
               </p>
             </figcaption>
           </figure>

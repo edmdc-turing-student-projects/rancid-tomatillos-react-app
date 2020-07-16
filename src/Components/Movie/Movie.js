@@ -26,7 +26,7 @@ export default Movie;
 Movie.propTypes = {
   posterPath: PropTypes.string,
   title: PropTypes.string,
-  averageRating: PropTypes.number,
+  averageRating: PropTypes.string,
   releaseDate: PropTypes.string,
   formatDate: PropTypes.func,
 };
