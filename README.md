@@ -21,7 +21,7 @@ Movie rating site where a user can login and rate/favorite the movies they loved
 ![Logged In](https://media.giphy.com/media/TjXinpnPuUIwb8d50B/giphy.gif)
 
 ### Logged in user's favoriting and deleting:
-![Favoriting and Deleting](http://g.recordit.co/rKbnbiEKjY.gif)
+![Favoriting and Deleting](https://media.giphy.com/media/f6CgdakXqXY71d6D8d/giphy.gif)
 
 ## Setup
 [Backend Repo](https://github.com/emontealvo/rancid-tomatillos-be-api)
